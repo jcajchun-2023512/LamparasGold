@@ -1,0 +1,1898 @@
+/* ==========================================================================
+   SULIGHT · ARCHITECTURAL LIGHTING
+   Diseño Front-End Senior · Editorial, Moderno y Fiel a la Referencia
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. VARIABLES & SISTEMA DE DISEÑO (Estricta paleta y tipografías)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Primario (acento) */
+  --c-primary: #D4653A;           /* Terracota */
+  --c-primary-hover: #b95229;
+  --c-primary-glow: rgba(212, 101, 58, 0.42);
+  --c-primary-subtle: rgba(212, 101, 58, 0.08);
+
+  /* Secundario (durazno cálido) */
+  --c-peach-start: #E98B5A;
+  --c-peach-end: #F4B899;
+  --grad-arch: linear-gradient(180deg, #E98B5A 0%, #F4B899 100%);
+  --grad-arch-glow: radial-gradient(circle at 50% 70%, rgba(255, 230, 210, 0.6) 0%, rgba(233, 139, 90, 0.2) 50%, transparent 80%);
+
+  /* Oscuro principal y secundario */
+  --c-dark: #181818;              /* Fondo Hero y Navbar */
+  --c-dark-secondary: #142E38;    /* Azul petróleo para pantallas de lámparas */
+  --c-dark-surface: #222222;
+
+  /* Fondo base y superficies */
+  --c-bg: #F4F4F4;                /* Fondo general editorial */
+  --c-surface: #FFFFFF;           /* Tarjetas y superficies */
+  --c-surface-glass: rgba(255, 255, 255, 0.88);
+  --c-surface-soft: #F9F9F9;
+
+  /* Textos */
+  --c-text-main: #181818;
+  --c-text-muted: #7A7A7A;        /* Gris pizarra: subtítulos y descripciones */
+  --c-text-light: #F4F4F4;
+  --c-text-ghost: rgba(0, 0, 0, 0.045);
+  --c-text-ghost-dark: rgba(255, 255, 255, 0.07);
+
+  /* Tipografías (Google Fonts con swap) */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+
+  /* Geometrías & Radios */
+  --radius-arch-large: 260px 260px 0 0;
+  --radius-card-arch: 100px 100px 24px 24px;
+  --radius-pill: 9999px;
+  --radius-box: 28px;
+  --radius-plus: 12px;
+
+  /* Sombras editoriales refinadas */
+  --shadow-arch: 0 35px 70px -15px rgba(233, 139, 90, 0.45), 0 10px 25px rgba(20, 46, 56, 0.1);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.035);
+  --shadow-card-active: 0 24px 50px -10px rgba(212, 101, 58, 0.16), 0 12px 28px rgba(0, 0, 0, 0.06);
+  --shadow-btn: 0 6px 20px rgba(212, 101, 58, 0.38);
+  --shadow-box: 0 20px 60px rgba(0, 0, 0, 0.04);
+
+  /* Transiciones y Easing */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: 0.4s var(--ease-editorial);
+}
+
+/* --------------------------------------------------------------------------
+   1. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--c-bg);
+  color: var(--c-text-main);
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--c-bg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.container {
+  width: min(1240px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* Foco accesible */
+:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   2. CURSOR PERSONALIZADO (Solo desktop)
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--c-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease-out, background-color 0.2s ease;
+  }
+  .custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--c-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s var(--ease-editorial), width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
+    opacity: 0.6;
+  }
+  .custom-cursor--hover {
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  .custom-cursor-follower--hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(212, 101, 58, 0.12);
+    border-color: var(--c-primary);
+    opacity: 1;
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. BOTONES & ELEMENTOS GLOBALES
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  padding: 13px 32px;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+.btn--primary {
+  background-color: var(--c-primary);
+  color: var(--c-surface);
+  box-shadow: var(--shadow-btn);
+}
+
+.btn--primary:hover {
+  background-color: var(--c-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px var(--c-primary-glow);
+}
+
+/* Botón "+" terracota en tarjetas */
+.btn-plus {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-plus);
+  background-color: var(--c-primary);
+  color: var(--c-surface);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px var(--c-primary-glow);
+  transition: transform 0.3s var(--ease-spring), background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-plus svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.btn-plus:hover {
+  transform: scale(1.1);
+  background-color: var(--c-primary-hover);
+  box-shadow: 0 10px 22px rgba(212, 101, 58, 0.55);
+}
+
+.btn-plus:active svg {
+  transform: rotate(90deg);
+}
+
+/* Botones circulares de navegación carrusel (‹ ›) */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-circle-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--c-surface);
+  color: var(--c-text-muted);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s var(--ease-editorial);
+}
+
+.nav-circle-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+.nav-circle-btn:hover {
+  color: var(--c-primary);
+  background-color: var(--c-surface);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 101, 58, 0.15);
+  border-color: rgba(212, 101, 58, 0.2);
+}
+
+.nav-circle-btn:active {
+  transform: translateY(0);
+}
+
+/* Numeración fantasma decorativa (01 a 07) */
+.ghost-number {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.ghost-number__num {
+  font-family: var(--font-cinzel);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--c-text-ghost);
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.ghost-number__line {
+  display: inline-block;
+  width: 44px;
+  height: 2px;
+  background-color: var(--c-primary);
+  opacity: 0.6;
+  border-radius: 2px;
+}
+
+.ghost-number--center {
+  justify-content: center;
+}
+
+/* Títulos de sección */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--c-text-main);
+  margin-bottom: 12px;
+}
+
+.section-title--center {
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 0.98rem;
+  color: var(--c-text-muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.section-subtitle--center {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.section-subtitle--block {
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVBAR & HERO SECTION (#181818)
+   -------------------------------------------------------------------------- */
+.hero-wrapper {
+  background-color: var(--c-dark);
+  color: var(--c-surface);
+  position: relative;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: transparent;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, height 0.4s ease, box-shadow 0.4s ease;
+  padding-block: 24px;
+}
+
+.navbar.is-scrolled {
+  background-color: rgba(24, 24, 24, 0.92);
+  backdrop-filter: blur(14px);
+  padding-block: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo "SULIGHT" */
+.logo {
+  font-family: var(--font-cinzel);
+  font-size: 1.65rem;
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo__su {
+  font-weight: 600;
+  color: var(--c-surface);
+}
+
+.logo__light {
+  font-weight: 300;
+  color: var(--c-peach-end);
+}
+
+/* Enlaces centrales */
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 38px;
+}
+
+.nav__link {
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: #CCCCCC;
+  position: relative;
+  padding-block: 6px;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--c-primary);
+  transition: width 0.3s var(--ease-editorial);
+}
+
+.nav__link:hover {
+  color: var(--c-surface);
+}
+
+.nav__link:hover::after,
+.nav__link.active::after {
+  width: 100%;
+}
+
+.nav__mobile-cta {
+  display: none;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav__desktop-cta {
+  padding: 10px 28px;
+  font-size: 0.9rem;
+}
+
+/* Menú Hamburguesa para Móvil */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 22px;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 101;
+}
+
+.menu-toggle__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--c-surface);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.is-open .menu-toggle__line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+.menu-toggle.is-open .menu-toggle__line:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.is-open .menu-toggle__line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Hero Content Grid */
+.hero {
+  padding-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  gap: 60px;
+  min-height: 580px;
+}
+
+/* Escenario de Arcos Recurrentes */
+.arch-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.arch {
+  position: relative;
+  background: var(--grad-arch);
+  box-shadow: var(--shadow-arch);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.arch--hero {
+  width: 380px;
+  height: 520px;
+  border-radius: var(--radius-arch-large);
+}
+
+/* Marca de agua "LIGHT" en Cinzel */
+.arch__watermark {
+  font-family: var(--font-cinzel);
+  font-size: clamp(3.8rem, 6.5vw, 5.8rem);
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.22);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.arch__watermark--hero {
+  margin-bottom: 24px;
+}
+
+.arch__watermark--vertical-left {
+  position: absolute;
+  left: 20px;
+  bottom: 40px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.2em;
+}
+
+.arch__watermark--vertical-right {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.2em;
+}
+
+.arch__watermark--get-started {
+  margin-bottom: 24px;
+  letter-spacing: 0.22em;
+}
+
+/* Cordón y lámpara colgante (Genérico para otras secciones) */
+.pendant-wire {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: 2px;
+  height: 150px;
+  background: linear-gradient(180deg, rgba(20, 46, 56, 0.8) 0%, rgba(20, 46, 56, 0.4) 100%);
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.pendant-lamp {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% -80px;
+  z-index: 5;
+  transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   TAREA 2: LÁMPARA DEL HERO (PÉNDULO Y CAPAS DE ILUMINACIÓN NATURAL)
+   -------------------------------------------------------------------------- */
+
+/* Resplandor ambiental sobre el arco durazno (Capa 4a) */
+.hero-arch-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-arch-large);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 235, 210, 0.5) 0%,
+    rgba(233, 139, 90, 0.26) 42%,
+    rgba(233, 139, 90, 0) 74%
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  opacity: 0.9;
+  will-change: opacity;
+  z-index: 1;
+}
+
+/* Resplandor proyectado debajo del arco (Capa 4b) */
+.hero-floor-glow {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(244, 184, 153, 0.55) 0%,
+    rgba(212, 101, 58, 0.25) 40%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  filter: blur(18px);
+  pointer-events: none;
+  opacity: 0.85;
+  will-change: opacity;
+  z-index: 2;
+}
+
+/* Contenedor del péndulo Hero (Pivote superior exacto donde ancla el cable en el arco) */
+.hero-pendulum {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 0; /* Punto de pivote superior */
+  z-index: 5;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Cable de la lámpara en el Hero (oscila rígidamente junto al candelabro) */
+.pendant-wire--hero {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 85px;
+  background: linear-gradient(180deg, rgba(20, 46, 56, 0.95) 0%, rgba(20, 46, 56, 0.45) 100%);
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+/* Contenedor del candelabro en el Hero (admite microtorsión axial secundaria <1°) */
+.pendant-lamp--hero {
+  position: relative;
+  top: 80px;
+  left: 0;
+  transform: none;
+  width: 360px;
+  height: 445px;
+  display: block;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+/* Capas de imagen superpuestas para encendido/apagado fotorrealista */
+.lamp-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Capa 1: Base apagada atenuada estática */
+.lamp-layer--base {
+  filter: brightness(0.48) saturate(0.75) contrast(1.05) drop-shadow(0 16px 26px rgba(0, 0, 0, 0.45));
+  opacity: 1;
+}
+
+/* Capa 2: Encendida (superpuesta, opacidad modulada suavemente a 60 fps) */
+.lamp-layer--lit {
+  filter: drop-shadow(0 20px 32px rgba(212, 101, 58, 0.28)) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+  opacity: 1;
+  will-change: opacity;
+}
+
+/* Capa 3: Contenedor de halos de luz de filamento sobre cada foco */
+.lamp-bulbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.lamp-bulb-halo {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 246, 225, 0.96) 0%,
+    rgba(244, 184, 153, 0.65) 28%,
+    rgba(212, 101, 58, 0.22) 55%,
+    rgba(212, 101, 58, 0) 75%
+  );
+  mix-blend-mode: screen;
+  filter: blur(2.5px);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.pendant-lamp__img {
+  width: 380px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+}
+
+.pendant-lamp__img--hero {
+  width: 360px;
+  max-width: none;
+}
+
+/* Resplandor cálido bajo la lámpara (genérico) */
+.pendant-lamp__glow {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 320px;
+  height: 220px;
+  transform: translate(-50%, -10%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 240, 215, 0.6) 0%, rgba(233, 139, 90, 0.25) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: -1;
+  animation: glow-pulse 7s ease-in-out infinite alternate;
+}
+
+.pendant-lamp__glow--active {
+  opacity: 0.9;
+  background: radial-gradient(ellipse at center, rgba(255, 248, 230, 0.85) 0%, rgba(212, 101, 58, 0.35) 50%, transparent 80%);
+}
+
+@keyframes glow-pulse {
+  0% { transform: translate(-50%, -10%) scale(0.96); opacity: 0.65; }
+  100% { transform: translate(-50%, -10%) scale(1.04); opacity: 0.95; }
+}
+
+/* Columna Derecha Hero */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Badge terracota */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(212, 101, 58, 0.16);
+  border: 1px solid rgba(212, 101, 58, 0.3);
+  padding: 7px 18px;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+.badge-tag__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--c-primary);
+  box-shadow: 0 0 8px var(--c-primary);
+}
+
+.badge-tag__text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--c-peach-end);
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+}
+
+/* Título H1 Cinematográfico */
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  margin-bottom: 36px;
+  color: var(--c-surface);
+}
+
+.hero__title-line {
+  display: block;
+}
+
+/* Acciones Hero: CTA + Watch Video */
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
+.btn--hero {
+  padding: 16px 40px;
+  font-size: 1rem;
+}
+
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--c-surface);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 0.25s ease;
+}
+
+.btn-play:hover {
+  opacity: 0.85;
+}
+
+.btn-play__circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  display: grid;
+  place-items: center;
+  color: var(--c-surface);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.btn-play__circle::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--c-primary);
+  opacity: 0;
+  animation: ripple-pulse 2.2s infinite;
+}
+
+@keyframes ripple-pulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.btn-play__icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+}
+
+/* Estadísticas en fila */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item__value {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--c-surface);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-item__accent {
+  color: var(--c-primary);
+  margin-left: 2px;
+}
+
+.stat-item__label {
+  font-size: 0.85rem;
+  color: #8C8C8C;
+  font-weight: 400;
+}
+
+/* Fantasma "Home — 01" */
+.hero__ghost-label {
+  position: absolute;
+  right: 24px;
+  bottom: 30px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  color: var(--c-text-ghost-dark);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Corte diagonal */
+.hero-diagonal-cut {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--c-bg);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. SECCIÓN 2: POPULAR PRODUCT (02)
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: 100px;
+  position: relative;
+}
+
+.section--popular {
+  padding-top: 60px;
+}
+
+.section-header {
+  margin-bottom: 44px;
+}
+
+.section-header--with-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Contenedor del Carrusel Popular */
+.popular-carousel-viewport {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding-block: 22px 34px;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.popular-carousel-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.popular-carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--carousel-gap, 28px);
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 700ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.popular-carousel-track.no-transition {
+  transition: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   TARJETA EN FORMA DE ARCO (Arch Card)
+   -------------------------------------------------------------------------- */
+.arch-card {
+  flex: 0 0 var(--card-width, 280px);
+  width: var(--card-width, 280px);
+  min-width: var(--card-width, 280px);
+  box-sizing: border-box;
+  background-color: var(--c-surface-glass);
+  border-radius: var(--radius-card-arch);
+  padding: 24px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  position: relative;
+  transition: transform 0.45s var(--ease-spring), box-shadow 0.45s var(--ease-editorial), background-color 0.35s ease;
+  min-height: 380px;
+}
+
+/* Tarjeta activa / elevada ($20 Industrial Light por defecto) */
+.arch-card.is-active,
+.arch-card:hover {
+  background-color: var(--c-surface);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-card-active);
+  border-color: rgba(212, 101, 58, 0.18);
+}
+
+/* Pulso breve en el botón "+" al cambiar de tarjeta activa */
+@keyframes btnPlusPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(212, 101, 58, 0.4);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 8px 24px rgba(212, 101, 58, 0.75);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(212, 101, 58, 0.4);
+  }
+}
+
+.arch-card .btn-plus.is-pulsing {
+  animation: btnPlusPulse 550ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.arch-card:hover .btn-plus {
+  box-shadow: 0 8px 24px rgba(212, 101, 58, 0.6);
+}
+
+.arch-card__top {
+  position: relative;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 12px;
+}
+
+.arch-card__wire {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  width: 1.5px;
+  height: 70px;
+  background-color: #D8D8D8;
+  transform: translateX(-50%);
+}
+
+.arch-card__img-box {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.arch-card__img {
+  max-height: 160px;
+  max-width: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s var(--ease-editorial);
+}
+
+.arch-card__img--stick {
+  max-height: 180px;
+}
+
+.arch-card:hover .arch-card__img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+.arch-card__body {
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.arch-card__title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-text-main);
+  margin-bottom: 2px;
+}
+
+.arch-card__category {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--c-text-muted);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.arch-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arch-card__price {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--c-text-main);
+}
+
+/* --------------------------------------------------------------------------
+   6. SECCIÓN 3: WHY CHOOSE US (03) & SECCIÓN 4: LATEST FEATURES (04)
+   -------------------------------------------------------------------------- */
+.feature-block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.feature-block-grid--reverse {
+  grid-template-columns: 1.1fr 1fr;
+}
+
+/* Arcos medianos para bloques de características */
+.arch--feature {
+  width: 360px;
+  height: 480px;
+  border-radius: var(--radius-arch-large);
+}
+
+.arch-stage--feature {
+  width: 100%;
+}
+
+.pendant-lamp--feature {
+  top: 15px;
+}
+
+.pendant-lamp--conical {
+  top: 10px;
+}
+
+/* Acordeón Interactivo */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accordion__item {
+  background-color: var(--c-surface);
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion__item.is-open {
+  border-color: rgba(212, 101, 58, 0.3);
+  box-shadow: 0 8px 24px rgba(212, 101, 58, 0.08);
+}
+
+.accordion__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  text-align: left;
+  transition: color 0.25s ease;
+}
+
+.accordion__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background-color: var(--c-primary);
+  color: var(--c-surface);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-spring), background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.accordion__icon svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.accordion__item.is-open .accordion__icon {
+  background-color: transparent;
+  color: var(--c-primary);
+  border: 1.5px solid var(--c-primary);
+}
+
+.accordion__item.is-open .accordion__icon svg {
+  transform: rotate(45deg);
+}
+
+.accordion__title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-text-main);
+  transition: color 0.25s ease;
+}
+
+.accordion__item.is-open .accordion__title {
+  color: var(--c-primary);
+}
+
+.accordion__collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-editorial);
+}
+
+.accordion__body {
+  padding: 0 24px 22px 76px;
+  font-size: 0.92rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECCIÓN 4: LATEST FEATURES CUADRÍCULA 2X2
+   -------------------------------------------------------------------------- */
+.features-2x2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.feature-tile {
+  background-color: var(--c-surface);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.35s var(--ease-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+}
+
+.feature-tile__text {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--c-text-main);
+  transition: color 0.25s ease;
+}
+
+.feature-tile.is-active,
+.feature-tile:hover {
+  background-color: var(--c-surface);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(212, 101, 58, 0.12);
+  border-color: rgba(212, 101, 58, 0.3);
+}
+
+.feature-tile.is-active .feature-tile__text,
+.feature-tile:hover .feature-tile__text {
+  color: var(--c-primary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   8. SECCIÓN 5: OUR PRODUCT (05) - CUADRÍCULA 4X2
+   -------------------------------------------------------------------------- */
+.section-header--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.products-control-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 28px;
+  width: 100%;
+}
+
+.category-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pill-filter {
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 22px;
+  border-radius: var(--radius-pill);
+  background-color: var(--c-surface);
+  color: var(--c-text-muted);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.pill-filter.is-active,
+.pill-filter:hover {
+  background-color: var(--c-primary);
+  color: var(--c-surface);
+  border-color: var(--c-primary);
+  box-shadow: 0 4px 14px var(--c-primary-glow);
+}
+
+.carousel-nav--center {
+  justify-content: center;
+}
+
+.our-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+/* --------------------------------------------------------------------------
+   9. SECCIÓN 6: GET STARTED (06)
+   -------------------------------------------------------------------------- */
+.section--get-started {
+  padding-block: 80px 120px;
+}
+
+.get-started-box {
+  background-color: var(--c-surface);
+  border-radius: var(--radius-box);
+  padding: 50px 70px 50px 50px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 60px;
+  box-shadow: var(--shadow-box);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: visible;
+}
+
+.get-started-box .ghost-number {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+}
+
+/* Arco sobresaliente por encima del contenedor */
+.get-started-box__visual {
+  position: relative;
+}
+
+.arch--get-started {
+  width: 330px;
+  height: 400px;
+  border-radius: var(--radius-arch-large);
+  margin-top: -90px; /* Sobresale hacia arriba */
+}
+
+.pendant-lamp--get-started {
+  top: -30px;
+}
+
+.pendant-lamp--get-started .pendant-lamp__img {
+  width: 320px;
+}
+
+.get-started-box__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title--get-started {
+  font-size: clamp(2.2rem, 3.4vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.section-subtitle--get-started {
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+
+/* Formulario newsletter tipo pill */
+.newsletter-pill-form {
+  display: flex;
+  align-items: center;
+  background-color: var(--c-bg);
+  border-radius: var(--radius-pill);
+  padding: 6px 8px 6px 24px;
+  border: 1.5px solid transparent;
+  transition: all 0.3s ease;
+  max-width: 480px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.newsletter-pill-form:focus-within {
+  background-color: #FFFFFF;
+  border-color: var(--c-primary);
+  box-shadow: 0 6px 20px rgba(212, 101, 58, 0.15);
+}
+
+.newsletter-pill-form__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--c-text-main);
+  padding-block: 10px;
+  outline: none;
+}
+
+.newsletter-pill-form__input::placeholder {
+  color: #A0A0A0;
+}
+
+.newsletter-pill-form__btn {
+  padding: 13px 30px;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+
+.form-feedback {
+  font-size: 0.88rem;
+  margin-top: 10px;
+  font-weight: 500;
+  min-height: 20px;
+}
+
+.form-feedback.is-success {
+  color: #2E7D32;
+}
+
+.form-feedback.is-error {
+  color: #C62828;
+}
+
+.get-started-quick-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+}
+
+.get-started-quick-contact a:hover {
+  color: var(--c-primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. SECCIÓN 7: FOOTER (07)
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--c-bg);
+  padding-top: 40px;
+  padding-bottom: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 70px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.ghost-number--footer {
+  position: absolute;
+  top: -45px;
+  left: 0;
+}
+
+.footer__brand-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo--footer {
+  color: var(--c-dark);
+  margin-bottom: 20px;
+}
+
+.logo--footer .logo__su {
+  color: var(--c-dark);
+}
+
+.logo--footer .logo__light {
+  color: var(--c-primary);
+}
+
+.footer__desc {
+  font-size: 0.92rem;
+  color: var(--c-text-muted);
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.footer__nav-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.footer__col-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--c-text-main);
+  margin-bottom: 22px;
+}
+
+.footer__col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__col-list a {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer__col-list a:hover {
+  color: var(--c-primary);
+  transform: translateX(3px);
+}
+
+.footer__bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.88rem;
+  color: var(--c-text-muted);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer__legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__legal-links a:hover {
+  color: var(--c-primary);
+}
+
+/* --------------------------------------------------------------------------
+   11. MODAL DE VIDEO
+   -------------------------------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.modal__content {
+  position: relative;
+  z-index: 2;
+  background-color: var(--c-dark);
+  border-radius: 20px;
+  padding: 30px;
+  width: min(800px, 92%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  color: var(--c-surface);
+  transform: scale(0.92);
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.modal.is-active .modal__content {
+  transform: scale(1);
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.8rem;
+  color: var(--c-text-muted);
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.modal__close:hover {
+  color: var(--c-surface);
+}
+
+.modal__title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.modal__video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.modal__video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. ANIMACIONES CINEMATOGRÁFICAS & SCROLL REVEAL
+   -------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-editorial), transform 0.8s var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Balanceo de lámparas */
+.is-swinging {
+  animation: pendulum-swing 6s ease-in-out infinite alternate;
+}
+
+@keyframes pendulum-swing {
+  0% { transform: translateX(-50%) rotate(-3.5deg); }
+  100% { transform: translateX(-50%) rotate(3.5deg); }
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVE DESIGN (100% Adaptable)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .hero__grid {
+    gap: 40px;
+  }
+  .arch--hero {
+    width: 320px;
+    height: 450px;
+  }
+  .pendant-lamp--hero {
+    width: 300px;
+    height: 380px;
+  }
+  .pendant-lamp__img--hero {
+    width: 300px;
+  }
+  .our-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feature-block-grid,
+  .feature-block-grid--reverse {
+    gap: 50px;
+  }
+  .get-started-box {
+    padding: 40px;
+    gap: 40px;
+  }
+  .arch--get-started {
+    width: 280px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Menú Drawer Móvil */
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(320px, 85%);
+    height: 100vh;
+    background-color: var(--c-dark);
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 40px 30px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+    transition: right 0.4s var(--ease-editorial);
+    z-index: 100;
+  }
+
+  .nav__links.is-open {
+    right: 0;
+  }
+
+  .nav__desktop-cta {
+    display: none;
+  }
+
+  .nav__mobile-cta {
+    display: block;
+    margin-top: 10px;
+  }
+
+  /* Hero Reordenado */
+  .hero__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+  }
+
+  .hero__visual {
+    order: 2;
+    justify-content: center;
+  }
+
+  .hero__content {
+    order: 1;
+    align-items: center;
+  }
+
+  .badge-tag {
+    margin-inline: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .stats-row {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  /* Bloques de características apilados */
+  .feature-block-grid,
+  .feature-block-grid--reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .feature-block-info {
+    order: 1;
+  }
+
+  .feature-block-visual {
+    order: 2;
+  }
+
+  .section-subtitle--block {
+    margin-inline: auto;
+  }
+
+  .accordion__body {
+    padding-left: 24px;
+    text-align: left;
+  }
+
+  /* Get Started apilado */
+  .get-started-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 30px 24px;
+    margin-top: 40px;
+  }
+
+  .get-started-box__visual {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .arch--get-started {
+    margin-top: -60px;
+    width: 260px;
+    height: 320px;
+  }
+
+  .newsletter-pill-form {
+    margin-inline: auto;
+  }
+
+  .get-started-quick-contact {
+    justify-content: center;
+  }
+
+  /* Footer */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer__nav-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .our-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .stat-item__value {
+    justify-content: center;
+  }
+
+  .newsletter-pill-form {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .newsletter-pill-form__input {
+    width: 100%;
+    text-align: center;
+  }
+
+  .newsletter-pill-form__btn {
+    width: 100%;
+  }
+
+  .footer__nav-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
+/* Respeto estricto a prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .is-swinging,
+  .pendant-lamp__glow,
+  .btn-play__circle::after,
+  .hero-pendulum,
+  .pendant-lamp--hero {
+    animation: none !important;
+    transform: none !important;
+  }
+  .lamp-layer--lit,
+  .lamp-bulb-halo,
+  .hero-arch-glow,
+  .hero-floor-glow {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .popular-carousel-track {
+    transition: none !important;
+  }
+}

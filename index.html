@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SULIGHT — Unique Light For Your Home | Iluminación de Vanguardia</title>
+  <meta name="description" content="SULIGHT: Exclusiva colección de lámparas colgantes, chandeliers modernos, luminarias industriales y decorativas con diseño editorial y calidad superior.">
+  
+  <!-- Google Fonts: Playfair Display, Poppins & Cinzel con font-display: swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="img/logo2.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Custom Cursor (Desktop Only) -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-follower" id="customCursorFollower" aria-hidden="true"></div>
+
+  <!-- ===== 1. NAVBAR + HERO (Fondo #181818 con corte diagonal) ===== -->
+  <header class="hero-wrapper" id="home">
+    
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar" aria-label="Navegación principal">
+      <div class="container navbar__inner">
+        <!-- Logo -->
+        <a href="#home" class="logo" aria-label="SULIGHT Inicio">
+          <span class="logo__su">SU</span><span class="logo__light">LIGHT</span>
+        </a>
+
+        <!-- Central Links -->
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#home" class="nav__link active">Discover</a></li>
+          <li><a href="#popular" class="nav__link">Product</a></li>
+          <li><a href="#why-us" class="nav__link">Portofolio</a></li>
+          <li><a href="#our-products" class="nav__link">About Us</a></li>
+          <li class="nav__mobile-cta"><a href="#contact" class="btn btn--pill btn--primary">Contact</a></li>
+        </ul>
+
+        <!-- Right CTA & Hamburger -->
+        <div class="navbar__actions">
+          <a href="#contact" class="btn btn--pill btn--primary nav__desktop-cta">Contact</a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero container">
+      <div class="hero__grid">
+        
+        <!-- Hero Izquierda: Arco Durazno Grande + Lámpara Colgante con Capas Realistas -->
+        <div class="hero__visual" id="heroVisual">
+          <div class="arch-stage arch-stage--hero">
+            <div class="arch arch--peach arch--hero">
+              <!-- Watermark horizontal Cinzel -->
+              <span class="arch__watermark arch__watermark--hero" aria-hidden="true">LIGHT</span>
+              <!-- Capa 4a: Resplandor cálido sobre el arco durazno -->
+              <div class="hero-arch-glow" id="heroArchGlow" aria-hidden="true"></div>
+            </div>
+
+            <!-- Capa 4b: Resplandor proyectado debajo del arco -->
+            <div class="hero-floor-glow" id="heroFloorGlow" aria-hidden="true"></div>
+            
+            <!-- Contenedor del péndulo (cable + candelabro oscilan juntos desde el borde superior del arco) -->
+            <div class="hero-pendulum" id="heroPendulum">
+              <div class="pendant-wire pendant-wire--hero" aria-hidden="true"></div>
+              <div class="pendant-lamp pendant-lamp--hero" id="heroLamp">
+                <!-- Capa 1: Base apagada (imagen atenuada estática con filtro) -->
+                <img src="assets/img/hero-lamp.png" 
+                     alt="" 
+                     aria-hidden="true"
+                     class="pendant-lamp__img pendant-lamp__img--hero lamp-layer lamp-layer--base" 
+                     width="420" height="520">
+
+                <!-- Capa 2: Encendida (superpuesta, opacidad animada) -->
+                <img src="assets/img/hero-lamp.png" 
+                     alt="Lámpara colgante de diseño exclusivo SULIGHT" 
+                     class="pendant-lamp__img pendant-lamp__img--hero lamp-layer lamp-layer--lit" 
+                     id="heroLampLit"
+                     width="420" height="520">
+
+                <!-- Capa 3: Halos de luz de los 6 focos (dentro del candelabro, giran con él) -->
+                <div class="lamp-bulbs" id="lampBulbs" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Derecha: Tagline, H1, CTA & Estadísticas -->
+        <div class="hero__content">
+          <div class="badge-tag">
+            <span class="badge-tag__dot"></span>
+            <span class="badge-tag__text">2021 Awards Winning Light</span>
+          </div>
+
+          <h1 class="hero__title">
+            <span class="hero__title-line">Unique Light</span>
+            <span class="hero__title-line">For Your Home</span>
+          </h1>
+
+          <div class="hero__actions">
+            <a href="#popular" class="btn btn--pill btn--primary btn--hero">Discover Now</a>
+            <button class="btn-play" id="btnPlayVideo" type="button" aria-label="Reproducir video de presentación">
+              <span class="btn-play__circle">
+                <svg viewBox="0 0 24 24" class="btn-play__icon" aria-hidden="true">
+                  <polygon points="9.5 7.5 16.5 12 9.5 16.5" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="btn-play__label">Watch Video</span>
+            </button>
+          </div>
+
+          <!-- Estadísticas -->
+          <div class="stats-row" id="statsRow">
+            <div class="stat-item">
+              <div class="stat-item__value"><span class="counter" data-target="9">0</span><span class="stat-item__accent">K+</span></div>
+              <p class="stat-item__label">Premium Product</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__value"><span class="counter" data-target="2">0</span><span class="stat-item__accent">k+</span></div>
+              <p class="stat-item__label">Happy Customer</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__value"><span class="counter" data-target="28">0</span><span class="stat-item__accent">+</span></div>
+              <p class="stat-item__label">Awards Winning</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fantasma "Home — 01" en la esquina inferior derecha del corte diagonal -->
+      <div class="hero__ghost-label" aria-hidden="true">
+        <span>Home — 01</span>
+      </div>
+    </div>
+
+    <!-- Corte diagonal hacia fondo #F4F4F4 -->
+    <div class="hero-diagonal-cut" aria-hidden="true"></div>
+  </header>
+
+  <main>
+
+    <!-- ===== 2. POPULAR PRODUCT (02) ===== -->
+    <section class="section section--popular" id="popular" aria-labelledby="titlePopular">
+      <div class="container">
+        
+        <!-- Header con número fantasma 02 -->
+        <div class="section-header section-header--with-controls">
+          <div class="section-header__text">
+            <div class="ghost-number" aria-hidden="true">
+              <span class="ghost-number__num">02</span>
+              <span class="ghost-number__line"></span>
+            </div>
+            <h2 class="section-title" id="titlePopular">Popular Product</h2>
+            <p class="section-subtitle">Find our best products faster, and get quality lights of choice from us</p>
+          </div>
+
+          <!-- Botones de carrusel (‹ ›) -->
+          <div class="carousel-nav" role="toolbar" aria-label="Controles de carrusel">
+            <button class="nav-circle-btn" id="popularPrev" aria-label="Producto anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="nav-circle-btn" id="popularNext" aria-label="Producto siguiente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fila de 4 tarjetas en arco con carrusel -->
+        <div class="popular-carousel-viewport" id="popularViewport" aria-live="off">
+          <div class="popular-carousel-track" id="popularTrack">
+            
+            <!-- Card 1 -->
+            <article class="arch-card" data-tilt>
+              <div class="arch-card__top">
+                <div class="arch-card__wire" aria-hidden="true"></div>
+                <div class="arch-card__img-box">
+                  <img src="assets/img/colgante-geometrico.png" 
+                       alt="Lámpara colgante Vietnamest Light con campana geométrica" 
+                       class="arch-card__img" 
+                       loading="lazy" width="220" height="260">
+                </div>
+              </div>
+              <div class="arch-card__body">
+                <h3 class="arch-card__title">Vietnamest Light</h3>
+                <span class="arch-card__category">Hanging Light</span>
+                <div class="arch-card__bottom">
+                  <span class="arch-card__price">$14</span>
+                  <button class="btn-plus" type="button" aria-label="Añadir Vietnamest Light al carrito o cotización">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 (Activa/Resaltada por defecto: $20 Industrial Light) -->
+            <article class="arch-card is-active" data-tilt>
+              <div class="arch-card__top">
+                <div class="arch-card__wire" aria-hidden="true"></div>
+                <div class="arch-card__img-box">
+                  <img src="assets/img/campana-ufo.png" 
+                       alt="Lámpara colgante Industrial Light acabado negro mate" 
+                       class="arch-card__img" 
+                       loading="lazy" width="220" height="260">
+                </div>
+              </div>
+              <div class="arch-card__body">
+                <h3 class="arch-card__title">Industrial Light</h3>
+                <span class="arch-card__category">Hanging Light</span>
+                <div class="arch-card__bottom">
+                  <span class="arch-card__price">$20</span>
+                  <button class="btn-plus" type="button" aria-label="Añadir Industrial Light al carrito o cotización">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="arch-card" data-tilt>
+              <div class="arch-card__top">
+                <div class="arch-card__wire" aria-hidden="true"></div>
+                <div class="arch-card__img-box">
+                  <img src="assets/img/esfera-rustica.png" 
+                       alt="Lámpara colgante Superbowl Light estilo domo" 
+                       class="arch-card__img" 
+                       loading="lazy" width="220" height="260">
+                </div>
+              </div>
+              <div class="arch-card__body">
+                <h3 class="arch-card__title">Superbowl Light</h3>
+                <span class="arch-card__category">Hanging Light</span>
+                <div class="arch-card__bottom">
+                  <span class="arch-card__price">$18</span>
+                  <button class="btn-plus" type="button" aria-label="Añadir Superbowl Light al carrito o cotización">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="arch-card" data-tilt>
+              <div class="arch-card__top">
+                <div class="arch-card__wire" aria-hidden="true"></div>
+                <div class="arch-card__img-box">
+                  <img src="assets/img/L-LÁMPARA COLGANTE.png" 
+                       alt="Lámpara colgante Ultrawide Light cúpula ancha" 
+                       class="arch-card__img" 
+                       loading="lazy" width="220" height="260">
+                </div>
+              </div>
+              <div class="arch-card__body">
+                <h3 class="arch-card__title">Ultrawide Light</h3>
+                <span class="arch-card__category">Hanging Light</span>
+                <div class="arch-card__bottom">
+                  <span class="arch-card__price">$16</span>
+                  <button class="btn-plus" type="button" aria-label="Añadir Ultrawide Light al carrito o cotización">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== 3. WHY CHOOSE US (03) ===== -->
+    <section class="section section--why-us" id="why-us" aria-labelledby="titleWhyUs">
+      <div class="container">
+        <div class="feature-block-grid">
+          
+          <!-- Izquierda: Arco durazno grande con lámpara domo y LIGHT vertical a la izquierda -->
+          <div class="feature-block-visual">
+            <div class="arch-stage arch-stage--feature">
+              <div class="arch arch--peach arch--feature">
+                <!-- Marca de agua vertical izquierda -->
+                <span class="arch__watermark arch__watermark--vertical-left" aria-hidden="true">LIGHT</span>
+              </div>
+              <div class="pendant-wire" aria-hidden="true"></div>
+              <div class="pendant-lamp pendant-lamp--feature" data-pendulum>
+                <div class="pendant-lamp__glow" aria-hidden="true"></div>
+                <img src="assets/img/L-LÁMPARA COLGANTE.png" 
+                     alt="Lámpara tipo domo industrial en arco durazno" 
+                     class="pendant-lamp__img" 
+                     loading="lazy" width="380" height="480">
+              </div>
+            </div>
+          </div>
+
+          <!-- Derecha: Título, Párrafo y Acordeón interactivo -->
+          <div class="feature-block-info">
+            <div class="ghost-number" aria-hidden="true">
+              <span class="ghost-number__num">03</span>
+              <span class="ghost-number__line"></span>
+            </div>
+            
+            <h2 class="section-title" id="titleWhyUs">Why Choose Us</h2>
+            <p class="section-subtitle section-subtitle--block">
+              Our products have won numerous awards this year, and yes we can ensure the unlimited quality of our products
+            </p>
+
+            <!-- Acordeón interactivo -->
+            <div class="accordion" id="whyAccordion" role="tablist" aria-label="Razones para elegirnos">
+              
+              <!-- Item 1 -->
+              <div class="accordion__item">
+                <button class="accordion__header" type="button" aria-expanded="false" aria-controls="accContent1" id="accHeader1">
+                  <span class="accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </span>
+                  <span class="accordion__title">Frequently New Design</span>
+                </button>
+                <div class="accordion__collapse" id="accContent1" role="tabpanel" aria-labelledby="accHeader1" hidden>
+                  <div class="accordion__body">
+                    <p>Our design team launches cutting-edge silhouettes every month, following high-end European architectural standards.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 (Abierto por defecto) -->
+              <div class="accordion__item is-open">
+                <button class="accordion__header" type="button" aria-expanded="true" aria-controls="accContent2" id="accHeader2">
+                  <span class="accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </span>
+                  <span class="accordion__title">Original Production</span>
+                </button>
+                <div class="accordion__collapse" id="accContent2" role="tabpanel" aria-labelledby="accHeader2">
+                  <div class="accordion__body">
+                    <p>we have the entire industrial chain of lighting products and provide the most advantageous price</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="accordion__item">
+                <button class="accordion__header" type="button" aria-expanded="false" aria-controls="accContent3" id="accHeader3">
+                  <span class="accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </span>
+                  <span class="accordion__title">Production With Large Stock</span>
+                </button>
+                <div class="accordion__collapse" id="accContent3" role="tabpanel" aria-labelledby="accHeader3" hidden>
+                  <div class="accordion__body">
+                    <p>We maintain massive inventory and rapid fulfillment for both residential renovations and commercial developments.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="accordion__item">
+                <button class="accordion__header" type="button" aria-expanded="false" aria-controls="accContent4" id="accHeader4">
+                  <span class="accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </span>
+                  <span class="accordion__title">Professional Quality Control</span>
+                </button>
+                <div class="accordion__collapse" id="accContent4" role="tabpanel" aria-labelledby="accHeader4" hidden>
+                  <div class="accordion__body">
+                    <p>Each luminaire undergoes strict multi-stage photometric tests, safety certifications, and thermal endurance audits.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== 4. LATEST FEATURES (04) ===== -->
+    <section class="section section--features" id="features" aria-labelledby="titleFeatures">
+      <div class="container">
+        <div class="feature-block-grid feature-block-grid--reverse">
+          
+          <!-- Izquierda: Título, Párrafo y Cuadrícula 2x2 de tarjetas -->
+          <div class="feature-block-info">
+            <div class="ghost-number" aria-hidden="true">
+              <span class="ghost-number__num">04</span>
+              <span class="ghost-number__line"></span>
+            </div>
+
+            <h2 class="section-title" id="titleFeatures">Latest Features</h2>
+            <p class="section-subtitle section-subtitle--block">
+              We always provide the latest and best features for our customers, don't worry, we provide the latest technology for you
+            </p>
+
+            <!-- Cuadrícula 2x2 de tarjetas con interactividad -->
+            <div class="features-2x2-grid" id="featuresGrid" role="group" aria-label="Características tecnológicas">
+              
+              <button class="feature-tile" type="button">
+                <span class="feature-tile__text">Voltage Settings</span>
+              </button>
+
+              <button class="feature-tile is-active" type="button">
+                <span class="feature-tile__text">Application Control</span>
+              </button>
+
+              <button class="feature-tile" type="button">
+                <span class="feature-tile__text">Voice Control</span>
+              </button>
+
+              <button class="feature-tile" type="button">
+                <span class="feature-tile__text">Schedule Settings</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Derecha: Arco durazno con lámpara cónica encendida y LIGHT vertical en el borde derecho -->
+          <div class="feature-block-visual">
+            <div class="arch-stage arch-stage--feature">
+              <div class="arch arch--peach arch--feature">
+                <!-- Marca de agua vertical derecha -->
+                <span class="arch__watermark arch__watermark--vertical-right" aria-hidden="true">LIGHT</span>
+              </div>
+              <div class="pendant-wire" aria-hidden="true"></div>
+              <div class="pendant-lamp pendant-lamp--conical pendant-lamp--lit" data-pendulum>
+                <div class="pendant-lamp__glow pendant-lamp__glow--active" aria-hidden="true"></div>
+                <img src="assets/img/p15_img11.png" 
+                     alt="Lámpara cónica iluminada con resplandor cálido" 
+                     class="pendant-lamp__img" 
+                     loading="lazy" width="380" height="480">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== 5. OUR PRODUCT (05) ===== -->
+    <section class="section section--our-products" id="our-products" aria-labelledby="titleOurProduct">
+      <div class="container">
+        
+        <!-- Header centrado con número fantasma 05 -->
+        <div class="section-header section-header--center">
+          <div class="ghost-number ghost-number--center" aria-hidden="true">
+            <span class="ghost-number__num">05</span>
+            <span class="ghost-number__line"></span>
+          </div>
+          <h2 class="section-title section-title--center" id="titleOurProduct">Our Product</h2>
+          <p class="section-subtitle section-subtitle--center">
+            Discover all our unique products that are suitable for your home
+          </p>
+
+          <!-- Filtros de categoría y búsqueda rápida integrada -->
+          <div class="products-control-bar">
+            <div class="category-pills" id="categoryPills" role="tablist" aria-label="Filtrar por categoría">
+              <button class="pill-filter is-active" type="button" data-filter="all">All Models</button>
+              <button class="pill-filter" type="button" data-filter="hanging">Hanging Lights</button>
+              <button class="pill-filter" type="button" data-filter="industrial">Industrial</button>
+              <button class="pill-filter" type="button" data-filter="vintage">Vintage Bulbs</button>
+            </div>
+
+            <!-- Botones circulares centrados debajo -->
+            <div class="carousel-nav carousel-nav--center" role="toolbar" aria-label="Controles de catálogo">
+              <button class="nav-circle-btn" id="ourProdPrev" aria-label="Página anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="nav-circle-btn" id="ourProdNext" aria-label="Página siguiente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuadrícula 4x2 con tarjetas de arco -->
+        <div class="our-products-grid" id="ourProductsGrid">
+          
+          <!-- Fila 1: 4 tarjetas idénticas a Popular Product -->
+          
+          <!-- Card 1 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/colgante-geometrico.png" 
+                     alt="Vietnamest Light" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Vietnamest Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$14</span>
+                <button class="btn-plus" type="button" aria-label="Añadir al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="arch-card" data-category="industrial" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/campana-ufo.png" 
+                     alt="Industrial Light" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Industrial Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$20</span>
+                <button class="btn-plus" type="button" aria-label="Añadir al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/esfera-rustica.png" 
+                     alt="Superbowl Light" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Superbowl Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$18</span>
+                <button class="btn-plus" type="button" aria-label="Añadir al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/L-LÁMPARA COLGANTE.png" 
+                     alt="Ultrawide Light" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Ultrawide Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$16</span>
+                <button class="btn-plus" type="button" aria-label="Añadir al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Fila 2: 4 tarjetas nuevas -->
+
+          <!-- Card 5: Roundness Light $17 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/esfera-3d.png" 
+                     alt="Lámpara esférica Roundness Light de cristal opalino" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Roundness Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$17</span>
+                <button class="btn-plus" type="button" aria-label="Añadir Roundness Light al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Stickness Light $28 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/foco-tubular-t32.png" 
+                     alt="Lámpara cilíndrica Stickness Light acabado negro mate" 
+                     class="arch-card__img arch-card__img--stick" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Stickness Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$28</span>
+                <button class="btn-plus" type="button" aria-label="Añadir Stickness Light al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7: Superjet Light $15 -->
+          <article class="arch-card" data-category="hanging" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/p14_img10.png" 
+                     alt="Lámpara colgante Superjet Light moderna" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Superjet Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$15</span>
+                <button class="btn-plus" type="button" aria-label="Añadir Superjet Light al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8: Nakedness Light $10 -->
+          <article class="arch-card" data-category="vintage" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/bombilla-edison-st21.png" 
+                     alt="Bombilla de filamento vintage suspendida Nakedness Light" 
+                     class="arch-card__img" 
+                     loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Nakedness Light</h3>
+              <span class="arch-card__category">Hanging Light</span>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">$10</span>
+                <button class="btn-plus" type="button" aria-label="Añadir Nakedness Light al carrito">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== 6. GET STARTED (06) ===== -->
+    <section class="section section--get-started" id="contact" aria-labelledby="titleGetStarted">
+      <div class="container">
+        
+        <div class="get-started-box">
+          <div class="ghost-number" aria-hidden="true">
+            <span class="ghost-number__num">06</span>
+            <span class="ghost-number__line"></span>
+          </div>
+
+          <!-- Arco que sobresale por encima del contenedor -->
+          <div class="get-started-box__visual">
+            <div class="arch-stage arch-stage--get-started">
+              <div class="arch arch--peach arch--get-started">
+                <span class="arch__watermark arch__watermark--get-started" aria-hidden="true">LIGHT</span>
+              </div>
+              <div class="pendant-wire" aria-hidden="true"></div>
+              <div class="pendant-lamp pendant-lamp--get-started" data-pendulum>
+                <div class="pendant-lamp__glow" aria-hidden="true"></div>
+                <img src="assets/img/campana-ufo-200w.png" 
+                     alt="Lámpara de campana ancha en arco de suscripción" 
+                     class="pendant-lamp__img" 
+                     loading="lazy" width="340" height="420">
+              </div>
+            </div>
+          </div>
+
+          <!-- Información y campo de correo integrado tipo pill -->
+          <div class="get-started-box__content">
+            <h2 class="section-title section-title--get-started" id="titleGetStarted">Get Started</h2>
+            <p class="section-subtitle section-subtitle--get-started">
+              Don't miss out, join us and get interesting discounts from us
+            </p>
+
+            <form class="newsletter-pill-form" id="newsletterForm" novalidate>
+              <label for="newsletterEmail" class="visually-hidden">Correo electrónico</label>
+              <input type="email" 
+                     id="newsletterEmail" 
+                     name="email" 
+                     class="newsletter-pill-form__input" 
+                     placeholder="Enter your email" 
+                     required 
+                     autocomplete="email">
+              <button type="submit" class="btn btn--pill btn--primary newsletter-pill-form__btn">Join Now</button>
+            </form>
+            <p class="form-feedback" id="formFeedback" aria-live="polite"></p>
+
+            <!-- Datos de contacto directo (mantiene datos del negocio original) -->
+            <div class="get-started-quick-contact">
+              <span>Guatemala: <a href="tel:+50242710763">+502 4271-0763</a></span>
+              <span>·</span>
+              <a href="mailto:gerencia@grupoiluminame.com">gerencia@grupoiluminame.com</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===== 7. FOOTER (07) ===== -->
+  <footer class="footer" aria-labelledby="footerLogo">
+    <div class="container footer__inner">
+      
+      <!-- Ghost Number 07 -->
+      <div class="ghost-number ghost-number--footer" aria-hidden="true">
+        <span class="ghost-number__num">07</span>
+      </div>
+
+      <!-- Left Column: Logo & Mission -->
+      <div class="footer__brand-col">
+        <a href="#home" class="logo logo--footer" id="footerLogo">
+          <span class="logo__su">SU</span><span class="logo__light">LIGHT</span>
+        </a>
+        <p class="footer__desc">
+          We have a vision to make lighting able to be evenly distributed to all parts of the earth
+        </p>
+      </div>
+
+      <!-- 4 Navigation Columns -->
+      <div class="footer__nav-cols">
+        
+        <div class="footer__col">
+          <h4 class="footer__col-title">About</h4>
+          <ul class="footer__col-list">
+            <li><a href="#our-products">About Us</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#popular">News &amp; Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Movement</h4>
+          <ul class="footer__col-list">
+            <li><a href="#why-us">What sulight</a></li>
+            <li><a href="#contact">Support Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Company</h4>
+          <ul class="footer__col-list">
+            <li><a href="#why-us">Why sulight</a></li>
+            <li><a href="#popular">Capital</a></li>
+            <li><a href="#features">Security</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Support</h4>
+          <ul class="footer__col-list">
+            <li><a href="#why-us">FAQs</a></li>
+            <li><a href="#contact">Support Center</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="container footer__bottom-bar">
+      <p class="footer__copyright">&copy;2021 Sulight. All rights reserved</p>
+      <div class="footer__legal-links">
+        <a href="#terms">Terms &amp; Agreements</a>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Video Modal Popup -->
+  <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__overlay" id="modalOverlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+      <h3 class="modal__title" id="modalTitle">SULIGHT Architectural Experience</h3>
+      <div class="modal__video-wrapper">
+        <iframe width="100%" height="315" 
+                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?enablejsapi=1" 
+                title="SULIGHT Lighting Video Presentation" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
