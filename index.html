@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LamparasGold — Iluminación y Luminarias de Vanguardia</title>
+  <title>LamparasGold — Iluminación y Luces de Vanguardia</title>
   <meta name="description"
-    content="LamparasGold: Catálogo exclusivo de reflectores LED, campanas High Bay UFO, luminarias Street Light Cobra y Solar, paneles y bombillas de alta calidad.">
+    content="LamparasGold: Catálogo exclusivo de reflectores LED, campanas High Bay UFO, luces Street Light Cobra y Solar, paneles y bombillas de alta calidad.">
 
   <!-- Google Fonts: Playfair Display, Poppins & Cinzel con font-display: swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +21,20 @@
 
 <body>
 
+  <!-- Menú drawer móvil (fuera del header para evitar z-index / overflow issues) -->
+  <ul class="nav__links" id="navLinks" aria-label="Menú principal">
+    <li><a href="#home" class="nav__link active">Inicio</a></li>
+    <li><a href="#popular" class="nav__link">Productos</a></li>
+    <li><a href="#why-us" class="nav__link">Nosotros</a></li>
+    <li><a href="#our-products" class="nav__link">Catálogo</a></li>
+    <li class="nav__mobile-cta"><a
+        href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luces"
+        target="_blank" rel="noopener noreferrer" class="btn btn--pill btn--primary">Contacto</a></li>
+  </ul>
+
+  <!-- Overlay oscuro con blur para el menú drawer móvil -->
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
   <!-- ===== 1. NAVBAR + HERO (Fondo #181818 con corte diagonal) ===== -->
   <header class="hero-wrapper" id="home">
 
@@ -32,20 +46,17 @@
           <span class="logo__su">Lamparas</span><span class="logo__light">Gold</span>
         </a>
 
-        <!-- Central Links -->
-        <ul class="nav__links" id="navLinks">
+        <!-- Links desktop (ocultos en móvil — el drawer usa el ul de arriba) -->
+        <ul class="nav__links--desktop" aria-hidden="true">
           <li><a href="#home" class="nav__link active">Inicio</a></li>
           <li><a href="#popular" class="nav__link">Productos</a></li>
           <li><a href="#why-us" class="nav__link">Nosotros</a></li>
           <li><a href="#our-products" class="nav__link">Catálogo</a></li>
-          <li class="nav__mobile-cta"><a
-              href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
-              target="_blank" rel="noopener noreferrer" class="btn btn--pill btn--primary">Contacto</a></li>
         </ul>
 
         <!-- Right CTA & Hamburger -->
         <div class="navbar__actions">
-          <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
+          <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luces"
             target="_blank" rel="noopener noreferrer" class="btn btn--pill btn--primary nav__desktop-cta">Contacto</a>
           <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"
             aria-controls="navLinks">
@@ -56,9 +67,6 @@
         </div>
       </div>
     </nav>
-
-    <!-- Overlay oscuro con blur para el menú drawer móvil -->
-    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
     <!-- Hero Section -->
     <div class="hero container">
@@ -169,7 +177,7 @@
               <span class="ghost-number__line"></span>
             </div>
             <h2 class="section-title" id="titlePopular">Productos Populares</h2>
-            <p class="section-subtitle">Encuentra rápidamente nuestras luminarias más destacadas y de máxima calidad</p>
+            <p class="section-subtitle">Encuentra rápidamente nuestras luces más destacadas y de máxima calidad</p>
           </div>
 
           <!-- Botones de carrusel (‹ ›) -->
@@ -1133,7 +1141,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Panel LED 1×2</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 1×2">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1166,7 +1174,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Panel LED 2×4</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 2×4">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1199,7 +1207,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Panel LED 2×2</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 2×2">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1232,7 +1240,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Lámpara Estadio 500W</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Estadio 500W">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1265,7 +1273,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Lámpara Estadio 300W</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Estadio 300W">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1298,7 +1306,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Base para Tubo LED</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Base para Tubo LED">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1331,7 +1339,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Lámpara LED Lineal 100W</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara LED Lineal 100W">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1364,7 +1372,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Lámpara Gasolinera 500W</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Gasolinera 500W">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1397,7 +1405,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Wall Pack 40W</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Wall Pack 40W">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1430,7 +1438,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">Lámpara de Emergencia</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara de Emergencia">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1463,7 +1471,7 @@
             </div>
             <div class="arch-card__body">
               <h3 class="arch-card__title">LED Antipolvo / Humedad</h3>
-              <span class="arch-card__category">Paneles y otras luminarias</span>
+              <span class="arch-card__category">Paneles y otras luces</span>
                 <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de LED Antipolvo / Humedad">
                   <span class="arch-card__toggle-text">Ver detalles</span>
                   <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1968,7 +1976,7 @@
                   </svg>
                 </button>
                 <div class="arch-card__desc" aria-hidden="true">
-                  <p class="arch-card__desc-text">Bombilla tubular vintage T32 con vidrio ámbar y filamento espiralado cálido. Especial para luminarias lineales, barras temáticas y colgantes decorativos.</p>
+                  <p class="arch-card__desc-text">Bombilla tubular vintage T32 con vidrio ámbar y filamento espiralado cálido. Especial para luces lineales, barras temáticas y colgantes decorativos.</p>
                 </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
@@ -2381,11 +2389,11 @@
             <h2 class="section-title section-title--get-started" id="titleContact">Contacto</h2>
             <p class="section-subtitle section-subtitle--get-started">
               Comunícate directamente con nosotros para asesoría personalizada, existencias y cotizaciones de
-              luminarias.
+              luces.
             </p>
 
             <div class="contact-cta-wrapper">
-              <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
+              <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luces"
                 target="_blank" rel="noopener noreferrer" class="btn btn--pill btn--primary btn--contact-wa">
                 Contacto por WhatsApp
               </a>
@@ -2394,7 +2402,7 @@
             <!-- Datos de contacto directo (mantiene datos del negocio original) -->
             <div class="get-started-quick-contact">
               <span>Guatemala: <a
-                  href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
+                  href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luces"
                   target="_blank" rel="noopener noreferrer">+502 4271-0763</a></span>
               <span>·</span>
               <a href="mailto:gerencia@grupoiluminame.com">gerencia@grupoiluminame.com</a>
@@ -2424,7 +2432,7 @@
           <span class="logo__su">Lamparas</span><span class="logo__light">Gold</span>
         </a>
         <p class="footer__desc">
-          Iluminación y luminarias de alta eficiencia para proyectos industriales, viales y comerciales.
+          Iluminación y luces de alta eficiencia para proyectos industriales, viales y comerciales.
         </p>
       </div>
 
@@ -2440,7 +2448,7 @@
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Luminarias</h4>
+          <h4 class="footer__col-title">Luces</h4>
           <ul class="footer__col-list">
             <li><a href="#our-products">Catálogo Completo</a></li>
             <li><a href="#popular">Productos Destacados</a></li>
@@ -2460,7 +2468,7 @@
           <ul class="footer__col-list">
             <li><a href="#why-us">Garantía y Calidad</a></li>
             <li><a href="#contact">Centro de Contacto</a></li>
-            <li><a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
+            <li><a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luces"
                 target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></li>
           </ul>
         </div>
