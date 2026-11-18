@@ -1,6 +1,6 @@
 /**
  * ==========================================================================
- * SULIGHT · SCRIPT PRINCIPAL
+ * LamparasGold · SCRIPT PRINCIPAL
  * Interacciones de alta gama, animaciones a 60fps y accesibilidad
  * ==========================================================================
  */
@@ -13,48 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------------
-     1. CURSOR PERSONALIZADO (Solo Desktop)
-     ------------------------------------------------------------------------ */
-  const customCursor = document.getElementById('customCursor');
-  const customCursorFollower = document.getElementById('customCursorFollower');
-
-  if (!isTouchDevice && customCursor && customCursorFollower && !prefersReducedMotion) {
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let followerX = mouseX;
-    let followerY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      customCursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-    }, { passive: true });
-
-    // Loop suave de seguimiento (inercia fluida)
-    const renderCursor = () => {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
-      customCursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
-      requestAnimationFrame(renderCursor);
-    };
-    requestAnimationFrame(renderCursor);
-
-    // Expandir cursor sobre elementos interactivos
-    const interactiveElements = document.querySelectorAll('a, button, .arch-card, .feature-tile, .accordion__header, input');
-    interactiveElements.forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        customCursor.classList.add('custom-cursor--hover');
-        customCursorFollower.classList.add('custom-cursor-follower--hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        customCursor.classList.remove('custom-cursor--hover');
-        customCursorFollower.classList.remove('custom-cursor-follower--hover');
-      });
-    });
-  }
-
-  /* ------------------------------------------------------------------------
-     2. NAVBAR: SCROLL BLUR & MENÚ MÓVIL
+     1. NAVBAR: SCROLL BLUR & MENÚ MÓVIL
      ------------------------------------------------------------------------ */
   const navbar = document.getElementById('navbar');
   const menuToggle = document.getElementById('menuToggle');
@@ -108,14 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
       mousePushMax: 3.5            // Límite de deflexión máxima provocada por el mouse (grados)
     },
 
-    // 2. Coordenadas de los 6 focos (% relativos al contenedor del candelabro)
+    // 2. Coordenadas de la bombilla G16C 5W (filamento cálido central)
     bulbs: [
-      { id: 1, x: 15.1, y: 81.5 }, // Foco 1: inferior izquierdo
-      { id: 2, x: 19.0, y: 62.7 }, // Foco 2: medio izquierdo
-      { id: 3, x: 41.5, y: 92.6 }, // Foco 3: inferior centro-izquierdo
-      { id: 4, x: 59.8, y: 66.7 }, // Foco 4: centro-medio
-      { id: 5, x: 60.7, y: 70.4 }, // Foco 5: inferior centro-derecho
-      { id: 6, x: 88.4, y: 53.2 }  // Foco 6: superior derecho
+      { id: 1, x: 50.0, y: 68.0 }
     ],
 
     // 3. Ciclo orgánico de encendido y enfriamiento de filamento incandescente
@@ -125,10 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
       flickerIntervalMax: 140,     // Duración máxima de cada parpadeo rápido (ms)
       ignitionRampMin: 650,        // Tiempo mínimo para alcanzar el 100% de luz (ms)
       ignitionRampMax: 900,        // Tiempo máximo para alcanzar el 100% de luz (ms)
-      bulbOffsetMax: 250,          // Desfase máximo de encendido entre focos individuales (ms)
+      bulbOffsetMax: 0,            // Foco único: sin desfase entre focos
       onHoldMin: 6000,             // Tiempo mínimo en estado encendido continuo (ms)
       onHoldMax: 12000,            // Tiempo máximo en estado encendido continuo (ms)
-      breathingAmp: 0.03,          // Variación sutil de respiración incandescente (±3%)
+      breathingAmp: 0.035,         // Variación sutil de respiración incandescente (±3.5%)
       breathingFreq: 0.0028,       // Frecuencia de la respiración sutil
       cooldownMin: 950,            // Tiempo mínimo de enfriamiento paulatino al apagar (ms)
       cooldownMax: 1450,           // Tiempo máximo de enfriamiento paulatino al apagar (ms)
@@ -814,18 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     8. CUADRÍCULA 2X2 DE CARACTERÍSTICAS ("LATEST FEATURES")
-     ------------------------------------------------------------------------ */
-  const featureTiles = document.querySelectorAll('.feature-tile');
-  featureTiles.forEach((tile) => {
-    tile.addEventListener('click', () => {
-      featureTiles.forEach((t) => t.classList.remove('is-active'));
-      tile.classList.add('is-active');
-    });
-  });
-
-  /* ------------------------------------------------------------------------
-     9. FILTROS DE CATEGORÍA EN "OUR PRODUCT" (05)
+     8. FILTROS DE CATEGORÍA EN "OUR PRODUCT" (04)
      ------------------------------------------------------------------------ */
   const filterPills = document.querySelectorAll('.pill-filter');
   const productCards = document.querySelectorAll('#ourProductsGrid .arch-card');
@@ -868,38 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     10. FORMULARIO GET STARTED (NEWSLETTER)
-     ------------------------------------------------------------------------ */
-  const newsletterForm = document.getElementById('newsletterForm');
-  const formFeedback = document.getElementById('formFeedback');
-
-  if (newsletterForm && formFeedback) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = document.getElementById('newsletterEmail');
-      const email = input ? input.value.trim() : '';
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email || !emailRegex.test(email)) {
-        formFeedback.className = 'form-feedback is-error';
-        formFeedback.textContent = 'Por favor ingresa un correo electrónico válido.';
-        if (input) input.focus();
-        return;
-      }
-
-      // Simulación de envío exitoso
-      formFeedback.className = 'form-feedback is-success';
-      formFeedback.textContent = '¡Gracias por unirte! Te hemos enviado un 15% de descuento exclusivo.';
-      newsletterForm.reset();
-
-      setTimeout(() => {
-        formFeedback.textContent = '';
-      }, 7000);
-    });
-  }
-
-  /* ------------------------------------------------------------------------
-     11. MODAL DE VIDEO PRESENTACIÓN
+     9. MODAL DE VIDEO PRESENTACIÓN
      ------------------------------------------------------------------------ */
   const btnPlayVideo = document.getElementById('btnPlayVideo');
   const videoModal = document.getElementById('videoModal');
