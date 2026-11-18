@@ -34,10 +34,10 @@
 
         <!-- Central Links -->
         <ul class="nav__links" id="navLinks">
-          <li><a href="#home" class="nav__link active">Discover</a></li>
-          <li><a href="#popular" class="nav__link">Product</a></li>
-          <li><a href="#why-us" class="nav__link">Portofolio</a></li>
-          <li><a href="#our-products" class="nav__link">About Us</a></li>
+          <li><a href="#home" class="nav__link active">Inicio</a></li>
+          <li><a href="#popular" class="nav__link">Productos</a></li>
+          <li><a href="#why-us" class="nav__link">Nosotros</a></li>
+          <li><a href="#our-products" class="nav__link">Catálogo</a></li>
           <li class="nav__mobile-cta"><a
               href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
               target="_blank" rel="noopener noreferrer" class="btn btn--pill btn--primary">Contacto</a></li>
@@ -57,6 +57,9 @@
       </div>
     </nav>
 
+    <!-- Overlay oscuro con blur para el menú drawer móvil -->
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
     <!-- Hero Section -->
     <div class="hero container">
       <div class="hero__grid">
@@ -66,7 +69,7 @@
           <div class="arch-stage arch-stage--hero">
             <div class="arch arch--peach arch--hero">
               <!-- Watermark horizontal Cinzel -->
-              <span class="arch__watermark arch__watermark--hero" aria-hidden="true">LIGHT</span>
+              <span class="arch__watermark arch__watermark--hero" aria-hidden="true">LUZ</span>
               <!-- Capa 4a: Resplandor cálido sobre el arco durazno -->
               <div class="hero-arch-glow" id="heroArchGlow" aria-hidden="true"></div>
             </div>
@@ -100,23 +103,23 @@
         <div class="hero__content">
           <div class="badge-tag">
             <span class="badge-tag__dot"></span>
-            <span class="badge-tag__text">2026 Awards Winning Light</span>
+            <span class="badge-tag__text">Iluminación Premiada 2026</span>
           </div>
 
           <h1 class="hero__title">
-            <span class="hero__title-line">Unique Light</span>
-            <span class="hero__title-line">For Your Home</span>
+            <span class="hero__title-line">Iluminación Única</span>
+            <span class="hero__title-line">Para Tu Hogar</span>
           </h1>
 
           <div class="hero__actions">
-            <a href="#popular" class="btn btn--pill btn--primary btn--hero">Discover Now</a>
+            <a href="#popular" class="btn btn--pill btn--primary btn--hero">Descubrir Ahora</a>
             <button class="btn-play" id="btnPlayVideo" type="button" aria-label="Reproducir video de presentación">
               <span class="btn-play__circle">
                 <svg viewBox="0 0 24 24" class="btn-play__icon" aria-hidden="true">
                   <polygon points="9.5 7.5 16.5 12 9.5 16.5" fill="currentColor" />
                 </svg>
               </span>
-              <span class="btn-play__label">Watch Video</span>
+              <span class="btn-play__label">Ver Video</span>
             </button>
           </div>
 
@@ -125,30 +128,30 @@
             <div class="stat-item">
               <div class="stat-item__value"><span class="counter" data-target="9">0</span><span
                   class="stat-item__accent">K+</span></div>
-              <p class="stat-item__label">Premium Product</p>
+              <p class="stat-item__label">Productos Premium</p>
             </div>
             <div class="stat-item">
               <div class="stat-item__value"><span class="counter" data-target="2">0</span><span
                   class="stat-item__accent">k+</span></div>
-              <p class="stat-item__label">Happy Customer</p>
+              <p class="stat-item__label">Clientes Satisfechos</p>
             </div>
             <div class="stat-item">
               <div class="stat-item__value"><span class="counter" data-target="28">0</span><span
                   class="stat-item__accent">+</span></div>
-              <p class="stat-item__label">Awards Winning</p>
+              <p class="stat-item__label">Premios y Reconocimientos</p>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- Fantasma "Home — 01" en la esquina inferior derecha del corte diagonal -->
+      <!-- Fantasma "Inicio — 01" en la esquina inferior derecha del corte diagonal -->
       <div class="hero__ghost-label" aria-hidden="true">
-        <span>Home — 01</span>
+        <span>Inicio — 01</span>
       </div>
     </div>
 
-    <!-- Corte diagonal hacia fondo #F4F4F4 -->
+    <!-- Corte diagonal hacia fondo de la página -->
     <div class="hero-diagonal-cut" aria-hidden="true"></div>
   </header>
 
@@ -159,14 +162,14 @@
       <div class="container">
 
         <!-- Header con número fantasma 02 -->
-        <div class="section-header section-header--with-controls">
+        <div class="section-header section-header--with-controls" data-reveal>
           <div class="section-header__text">
             <div class="ghost-number" aria-hidden="true">
               <span class="ghost-number__num">02</span>
               <span class="ghost-number__line"></span>
             </div>
-            <h2 class="section-title" id="titlePopular">Popular Product</h2>
-            <p class="section-subtitle">Find our best products faster, and get quality lights of choice from us</p>
+            <h2 class="section-title" id="titlePopular">Productos Populares</h2>
+            <p class="section-subtitle">Encuentra rápidamente nuestras luminarias más destacadas y de máxima calidad</p>
           </div>
 
           <!-- Botones de carrusel (‹ ›) -->
@@ -191,7 +194,7 @@
           <div class="popular-carousel-track" id="popularTrack">
 
             <!-- Card 1 -->
-            <article class="arch-card" data-tilt>
+            <article tabindex="0" role="region" aria-label="Reflector LED 100W" class="arch-card" data-tilt>
               <div class="arch-card__top">
                 <div class="arch-card__wire" aria-hidden="true"></div>
                 <div class="arch-card__img-box">
@@ -204,6 +207,15 @@
               <div class="arch-card__body">
                 <h3 class="arch-card__title">Reflector LED 100W</h3>
                 <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Iluminación LED de alto flujo luminoso y certificación IP66. Carcasa robusta de aluminio anticorrosivo, recomendada para canchas recreativas, talleres y bodegas.</p>
+                </div>
                 <div class="arch-card__bottom">
                   <span class="arch-card__price">Cotizar</span>
                   <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflectores"
@@ -220,7 +232,7 @@
             </article>
 
             <!-- Card 2 (Activa/Resaltada por defecto: Campana UFO 200W) -->
-            <article class="arch-card is-active" data-tilt>
+            <article tabindex="0" role="region" aria-label="Campana UFO 200W" class="arch-card is-active" data-tilt>
               <div class="arch-card__top">
                 <div class="arch-card__wire" aria-hidden="true"></div>
                 <div class="arch-card__img-box">
@@ -232,6 +244,15 @@
               <div class="arch-card__body">
                 <h3 class="arch-card__title">Campana UFO 200W</h3>
                 <span class="arch-card__category">High Bay UFO</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Campana UFO 200W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Campana industrial de 200W de alto rendimiento y encendido instantáneo sin parpadeo. Protección hermética contra polvo y vapores para naves de gran altura.</p>
+                </div>
                 <div class="arch-card__bottom">
                   <span class="arch-card__price">Cotizar</span>
                   <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20High%20Bay%20UFO"
@@ -248,7 +269,7 @@
             </article>
 
             <!-- Card 3 -->
-            <article class="arch-card" data-tilt>
+            <article tabindex="0" role="region" aria-label="Cobra LED 100W" class="arch-card" data-tilt>
               <div class="arch-card__top">
                 <div class="arch-card__wire" aria-hidden="true"></div>
                 <div class="arch-card__img-box">
@@ -260,6 +281,15 @@
               <div class="arch-card__body">
                 <h3 class="arch-card__title">Cobra LED 100W</h3>
                 <span class="arch-card__category">Street Light Cobra</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra LED 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria de alumbrado público con cuerpo de aluminio fundido a presión y protección IP65/IK08. Ideal para vías principales y calles residenciales de tráfico medio.</p>
+                </div>
                 <div class="arch-card__bottom">
                   <span class="arch-card__price">Cotizar</span>
                   <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Street%20Light%20Cobra"
@@ -276,7 +306,7 @@
             </article>
 
             <!-- Card 4 -->
-            <article class="arch-card" data-tilt>
+            <article tabindex="0" role="region" aria-label="Cobra Solar 150W" class="arch-card" data-tilt>
               <div class="arch-card__top">
                 <div class="arch-card__wire" aria-hidden="true"></div>
                 <div class="arch-card__img-box">
@@ -288,6 +318,15 @@
               <div class="arch-card__body">
                 <h3 class="arch-card__title">Cobra Solar 150W</h3>
                 <span class="arch-card__category">Street Light Solar</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra Solar 150W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Sistema de iluminación solar de alta capacidad con control remoto multifunción. Operación programable para condominios, granjas y vías sin red eléctrica.</p>
+                </div>
                 <div class="arch-card__bottom">
                   <span class="arch-card__price">Cotizar</span>
                   <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Street%20Light%20Solar"
@@ -315,12 +354,12 @@
       <div class="container">
         <div class="feature-block-grid">
 
-          <!-- Izquierda: Arco durazno grande con lámpara domo y LIGHT vertical a la izquierda -->
-          <div class="feature-block-visual">
+          <!-- Izquierda: Arco durazno grande con lámpara domo y LUZ vertical a la izquierda -->
+          <div class="feature-block-visual" data-reveal>
             <div class="arch-stage arch-stage--feature">
               <div class="arch arch--peach arch--feature">
                 <!-- Marca de agua vertical izquierda -->
-                <span class="arch__watermark arch__watermark--vertical-left" aria-hidden="true">LIGHT</span>
+                <span class="arch__watermark arch__watermark--vertical-left" aria-hidden="true">LUZ</span>
               </div>
               <div class="pendant-wire" aria-hidden="true"></div>
               <div class="pendant-lamp pendant-lamp--feature" data-pendulum>
@@ -333,16 +372,15 @@
           </div>
 
           <!-- Derecha: Título, Párrafo y Acordeón interactivo -->
-          <div class="feature-block-info">
+          <div class="feature-block-info" data-reveal>
             <div class="ghost-number" aria-hidden="true">
               <span class="ghost-number__num">03</span>
               <span class="ghost-number__line"></span>
             </div>
 
-            <h2 class="section-title" id="titleWhyUs">Why Choose Us</h2>
+            <h2 class="section-title" id="titleWhyUs">¿Por Qué Elegirnos?</h2>
             <p class="section-subtitle section-subtitle--block">
-              Our products have won numerous awards this year, and yes we can ensure the unlimited quality of our
-              products
+              Nuestros productos destacan por su alta eficiencia y durabilidad, garantizando iluminación de calidad superior para cada proyecto.
             </p>
 
             <!-- Acordeón interactivo -->
@@ -358,12 +396,11 @@
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                   </span>
-                  <span class="accordion__title">Frequently New Design</span>
+                  <span class="accordion__title">Diseños Innovadores y Frecuentes</span>
                 </button>
                 <div class="accordion__collapse" id="accContent1" role="tabpanel" aria-labelledby="accHeader1" hidden>
                   <div class="accordion__body">
-                    <p>Our design team launches cutting-edge silhouettes every month, following high-end European
-                      architectural standards.</p>
+                    <p>Incorporamos continuamente modelos con tecnología óptica de vanguardia y estética arquitectónica moderna.</p>
                   </div>
                 </div>
               </div>
@@ -378,12 +415,11 @@
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                   </span>
-                  <span class="accordion__title">Original Production</span>
+                  <span class="accordion__title">Fabricación y Distribución Directa</span>
                 </button>
                 <div class="accordion__collapse" id="accContent2" role="tabpanel" aria-labelledby="accHeader2">
                   <div class="accordion__body">
-                    <p>we have the entire industrial chain of lighting products and provide the most advantageous price
-                    </p>
+                    <p>Contamos con la cadena completa de manufactura de iluminación y ofrecemos los precios más competitivos del mercado.</p>
                   </div>
                 </div>
               </div>
@@ -398,12 +434,11 @@
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                   </span>
-                  <span class="accordion__title">Production With Large Stock</span>
+                  <span class="accordion__title">Amplio Stock para Entrega Inmediata</span>
                 </button>
                 <div class="accordion__collapse" id="accContent3" role="tabpanel" aria-labelledby="accHeader3" hidden>
                   <div class="accordion__body">
-                    <p>We maintain massive inventory and rapid fulfillment for both residential renovations and
-                      commercial developments.</p>
+                    <p>Disponemos de un amplio inventario y respuesta rápida tanto para proyectos residenciales como para desarrollos comerciales e industriales.</p>
                   </div>
                 </div>
               </div>
@@ -418,12 +453,11 @@
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                   </span>
-                  <span class="accordion__title">Professional Quality Control</span>
+                  <span class="accordion__title">Control de Calidad Riguroso</span>
                 </button>
                 <div class="accordion__collapse" id="accContent4" role="tabpanel" aria-labelledby="accHeader4" hidden>
                   <div class="accordion__body">
-                    <p>Each luminaire undergoes strict multi-stage photometric tests, safety certifications, and thermal
-                      endurance audits.</p>
+                    <p>Cada luminaria supera exhaustivas pruebas fotométricas, normativas de seguridad eléctrica y auditorías de resistencia térmica.</p>
                   </div>
                 </div>
               </div>
@@ -441,12 +475,12 @@
       <div class="container">
 
         <!-- Header centrado con número fantasma 04 -->
-        <div class="section-header section-header--center">
+        <div class="section-header section-header--center" data-reveal>
           <div class="ghost-number ghost-number--center" aria-hidden="true">
             <span class="ghost-number__num">04</span>
             <span class="ghost-number__line"></span>
           </div>
-          <h2 class="section-title section-title--center" id="titleOurProduct">Our Product</h2>
+          <h2 class="section-title section-title--center" id="titleOurProduct">Nuestro Catálogo</h2>
           <p class="section-subtitle section-subtitle--center">
             Descubre las 6 categorías de nuestro catálogo de iluminación exterior e industrial
           </p>
@@ -481,167 +515,1830 @@
           </div>
         </div>
 
-        <!-- Cuadrícula 4x2 con tarjetas de arco -->
+        <!-- Cuadrícula de todos los productos individuales con tarjetas de arco -->
         <div class="our-products-grid" id="ourProductsGrid">
 
-          <!-- 6 Categorías del Catálogo en orden numérico (01 a 06) -->
+          <!-- ===== CATEGORÍA 01: REFLECTORES (8 productos) ===== -->
 
-          <!-- Categoría 01: Reflectores -->
-          <article class="arch-card" data-category="01" data-tilt>
+          <!-- Reflector 20W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 20W" class="arch-card" data-category="01" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
-                <img
-                  src="assets/img/catalogo/01_Reflectores/60055F-DL_Reflector_100W_(tambien_usada_en_200W_y_250W).png"
-                  alt="Reflectores LED LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+                <img src="assets/img/catalogo/01_Reflectores/60055B-DL_Reflector_20W.png"
+                  alt="Reflector LED 20W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">Reflectores</h3>
-              <span class="arch-card__category">Catálogo 01</span>
+              <h3 class="arch-card__title">Reflector LED 20W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 20W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Proyector compacto LED de alta eficiencia (IP66). Chasis de aluminio fundido resistente a intemperie, ideal para accesos, balcones y jardines residenciales.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflectores"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar Reflectores por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%2020W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 20W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Categoría 02: High Bay UFO -->
-          <article class="arch-card" data-category="02" data-tilt>
+          <!-- Reflector 30W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 30W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055C-DL_Reflector_30W.png"
+                  alt="Reflector LED 30W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 30W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 30W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria exterior de 30W con disipador térmico optimizado y protección IP66. Haz de luz amplio y brillante para terrazas, patios y entradas de garaje.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%2030W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 30W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 50W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 50W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055D-DL_Reflector_50W.png"
+                  alt="Reflector LED 50W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 50W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 50W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Reflector potente de 50W para exteriores con protección climática IP66. Gran cobertura lumínica homogénea, perfecto para fachadas y estacionamientos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%2050W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 50W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 100W / 200W / 250W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 100W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055F-DL_Reflector_100W_(tambien_usada_en_200W_y_250W).png"
+                  alt="Reflector LED 100W / 200W / 250W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 100W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Iluminación LED de alto flujo luminoso y certificación IP66. Carcasa robusta de aluminio anticorrosivo, recomendada para canchas recreativas, talleres y bodegas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%20100W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 100W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 150W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 150W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055G-DL_Reflector_150W.png"
+                  alt="Reflector LED 150W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 150W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 150W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Reflector profesional de 150W para grandes áreas exteriores. Vidrio templado de impacto y sellado hermético IP66 para perímetros de seguridad y complejos deportivos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%20150W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 150W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 300W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 300W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055J-DL_Reflector_300W.png"
+                  alt="Reflector LED 300W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 300W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 300W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Proyector de potencia pesada con disipación multialeta y óptica concentrada. Diseñado para explanadas industriales, estadios comunitarios y monumentos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%20300W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 300W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 400W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 400W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055I-DL_Reflector_400W.png"
+                  alt="Reflector LED 400W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 400W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 400W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Reflector de alta intensidad lumínica para recintos deportivos e instalaciones industriales. Alta resistencia a picos de voltaje y clima severo.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%20400W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 400W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reflector 500W -->
+          <article tabindex="0" role="region" aria-label="Reflector LED 500W" class="arch-card" data-category="01" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/01_Reflectores/60055I-DL_Reflector_500W.png"
+                  alt="Reflector LED 500W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Reflector LED 500W</h3>
+              <span class="arch-card__category">Reflectores</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Reflector LED 500W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Máxima potencia lumínica para campos deportivos profesionales, canteras y terminales logísticas. Distribución uniforme del haz y trabajo continuo.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Reflector%20LED%20500W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Reflector LED 500W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== CATEGORÍA 02: HIGH BAY UFO (3 productos) ===== -->
+
+          <!-- UFO 100W -->
+          <article tabindex="0" role="region" aria-label="Campana UFO 100W" class="arch-card" data-category="02" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/02_High_Bay_UFO/60056A_UFO_100W.png"
+                  alt="Campana High Bay UFO 100W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Campana UFO 100W</h3>
+              <span class="arch-card__category">High Bay UFO</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Campana UFO 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria suspendida tipo campana UFO con chasis disipador de aluminio forjado. Diseñada para almacenes, talleres y alturas de 4 a 6 metros.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Campana%20UFO%20100W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Campana UFO 100W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- UFO 200W -->
+          <article tabindex="0" role="region" aria-label="Campana UFO 200W" class="arch-card" data-category="02" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
                 <img src="assets/img/catalogo/02_High_Bay_UFO/60056B_UFO_200W.png"
-                  alt="Campanas High Bay UFO LamparasGold" class="arch-card__img" loading="lazy" width="220"
-                  height="260">
+                  alt="Campana High Bay UFO 200W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">High Bay UFO</h3>
-              <span class="arch-card__category">Catálogo 02</span>
+              <h3 class="arch-card__title">Campana UFO 200W</h3>
+              <span class="arch-card__category">High Bay UFO</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Campana UFO 200W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Campana industrial de 200W de alto rendimiento y encendido instantáneo sin parpadeo. Protección hermética contra polvo y vapores para naves de gran altura.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20High%20Bay%20UFO"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar High Bay UFO por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Campana%20UFO%20200W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Campana UFO 200W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Categoría 03: Street Light Cobra -->
-          <article class="arch-card" data-category="03" data-tilt>
+          <!-- UFO 150W / 250W -->
+          <article tabindex="0" role="region" aria-label="Campana UFO 150W / 250W" class="arch-card" data-category="02" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/02_High_Bay_UFO/60056D_y_60056E_UFO_150W_y_250W.png"
+                  alt="Campana High Bay UFO 150W y 250W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Campana UFO 150W / 250W</h3>
+              <span class="arch-card__category">High Bay UFO</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Campana UFO 150W / 250W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Campana de grado industrial con balastro de alta eficiencia y driver protegido. Iluminación continua para centros de distribución y fábricas pesadas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Campana%20UFO%20150W%20250W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Campana UFO 150W 250W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== CATEGORÍA 03: STREET LIGHT COBRA (4 productos) ===== -->
+
+          <!-- Cobra 50W -->
+          <article tabindex="0" role="region" aria-label="Cobra LED 50W" class="arch-card" data-category="03" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/03_Street_Light_Cobra/60066A_Cobra_50W.png"
+                  alt="Street Light Cobra 50W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Cobra LED 50W</h3>
+              <span class="arch-card__category">Street Light Cobra</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra LED 50W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria vial aerodinámica de 50W con óptica de distribución asimétrica Tipo II. Diseñada para calles secundarias, colonias y senderos peatonales seguros.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20LED%2050W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra LED 50W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cobra 100W -->
+          <article tabindex="0" role="region" aria-label="Cobra LED 100W" class="arch-card" data-category="03" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
                 <img src="assets/img/catalogo/03_Street_Light_Cobra/60066B-2_Cobra_100W.png"
-                  alt="Luminarias Street Light Cobra LamparasGold" class="arch-card__img" loading="lazy" width="220"
-                  height="260">
+                  alt="Street Light Cobra 100W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">Street Light Cobra</h3>
-              <span class="arch-card__category">Catálogo 03</span>
+              <h3 class="arch-card__title">Cobra LED 100W</h3>
+              <span class="arch-card__category">Street Light Cobra</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra LED 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria de alumbrado público con cuerpo de aluminio fundido a presión y protección IP65/IK08. Ideal para vías principales y calles residenciales de tráfico medio.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Street%20Light%20Cobra"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar Street Light Cobra por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20LED%20100W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra LED 100W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Categoría 04: Street Light Solar -->
-          <article class="arch-card" data-category="04" data-tilt>
+          <!-- Cobra 150W -->
+          <article tabindex="0" role="region" aria-label="Cobra LED 150W" class="arch-card" data-category="03" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/03_Street_Light_Cobra/60066C-2_Cobra_150W.png"
+                  alt="Street Light Cobra 150W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Cobra LED 150W</h3>
+              <span class="arch-card__category">Street Light Cobra</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra LED 150W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria vial de alto flujo lumínico con lente de vidrio de grado óptico. Recomendada para bulevares, avenidas urbanas y distribuidores viales.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20LED%20150W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra LED 150W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cobra 200W -->
+          <article tabindex="0" role="region" aria-label="Cobra LED 200W" class="arch-card" data-category="03" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/03_Street_Light_Cobra/60066D-2_Cobra_200W.png"
+                  alt="Street Light Cobra 200W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Cobra LED 200W</h3>
+              <span class="arch-card__category">Street Light Cobra</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra LED 200W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Máxima eficiencia vial con excelente uniformidad lumínica y bajo deslumbramiento. Diseñada para autopistas de alta velocidad, calzadas y puentes.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20LED%20200W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra LED 200W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== CATEGORÍA 04: STREET LIGHT SOLAR (3 productos) ===== -->
+
+          <!-- Cobra Solar 90W -->
+          <article tabindex="0" role="region" aria-label="Cobra Solar 90W" class="arch-card" data-category="04" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/04_Street_Light_Solar/60086E_Cobra_Solar_90W.png"
+                  alt="Street Light Solar 90W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Cobra Solar 90W</h3>
+              <span class="arch-card__category">Street Light Solar</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra Solar 90W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria vial solar integrada con panel policristalino y sensor de movimiento PIR. Autonomía nocturna garantizada sin cableado ni costo de electricidad.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20Solar%2090W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra Solar 90W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cobra Solar 120W -->
+          <article tabindex="0" role="region" aria-label="Cobra Solar 120W" class="arch-card" data-category="04" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/04_Street_Light_Solar/60086G_Cobra_Solar_120W.png"
+                  alt="Street Light Solar 120W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Cobra Solar 120W</h3>
+              <span class="arch-card__category">Street Light Solar</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra Solar 120W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Alumbrado solar autónomo con batería de litio LiFePO4 de larga vida y control inteligente. Ilumina automáticamente al caer la noche en parques y caminos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20Solar%20120W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra Solar 120W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cobra Solar 150W -->
+          <article tabindex="0" role="region" aria-label="Cobra Solar 150W" class="arch-card" data-category="04" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
                 <img src="assets/img/catalogo/04_Street_Light_Solar/60086L_Cobra_Solar_150W.png"
-                  alt="Luminarias Street Light Solar LamparasGold" class="arch-card__img" loading="lazy" width="220"
-                  height="260">
+                  alt="Street Light Solar 150W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">Street Light Solar</h3>
-              <span class="arch-card__category">Catálogo 04</span>
+              <h3 class="arch-card__title">Cobra Solar 150W</h3>
+              <span class="arch-card__category">Street Light Solar</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Cobra Solar 150W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Sistema de iluminación solar de alta capacidad con control remoto multifunción. Operación programable para condominios, granjas y vías sin red eléctrica.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Street%20Light%20Solar"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar Street Light Solar por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cobra%20Solar%20150W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Cobra Solar 150W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Categoría 05: Paneles y otras luminarias -->
-          <article class="arch-card" data-category="05" data-tilt>
+          <!-- ===== CATEGORÍA 05: PANELES Y OTRAS LUMINARIAS (10 productos) ===== -->
+
+          <!-- Panel 1x2 -->
+          <article tabindex="0" role="region" aria-label="Panel LED 1×2" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/68592_Panel_1x2.png"
+                  alt="Panel LED 1x2 LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Panel LED 1×2</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 1×2">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Panel LED ultra plano de 1×2 pies con difusor opalino antirreflejo (UGR<19). Luz blanca uniforme y suave para consultorios, aulas y oficinas corporativas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Panel%20LED%201x2"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Panel LED 1x2 por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Panel 2x4 -->
+          <article tabindex="0" role="region" aria-label="Panel LED 2×4" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/68592_Panel_2x4.png"
+                  alt="Panel LED 2x4 LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Panel LED 2×4</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 2×4">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Panel LED embutido/sobrepuesto de 2×4 pies de alto rendimiento lumínico. Ahorro de más del 60% frente a fluorescentes tradicionales en comercios y edificios.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Panel%20LED%202x4"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Panel LED 2x4 por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Panel 2x2 -->
+          <article tabindex="0" role="region" aria-label="Panel LED 2×2" class="arch-card" data-category="05" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
                 <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/69162_Panel_2x2.png"
-                  alt="Paneles y otras luminarias LamparasGold" class="arch-card__img" loading="lazy" width="220"
-                  height="260">
+                  alt="Panel LED 2x2 LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">Paneles y otras luminarias</h3>
-              <span class="arch-card__category">Catálogo 05</span>
+              <h3 class="arch-card__title">Panel LED 2×2</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Panel LED 2×2">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Panel cuadrado de 2×2 pies para cielo falso modular estándar. Iluminación profesional homogénea sin sombras ni calor residual para centros de trabajo.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Paneles%20y%20otras%20luminarias"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar Paneles y otras luminarias por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Panel%20LED%202x2"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Panel LED 2x2 por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Categoría 06: Bombillas -->
-          <article class="arch-card" data-category="06" data-tilt>
+          <!-- Lámpara Estadio 500W -->
+          <article tabindex="0" role="region" aria-label="Lámpara Estadio 500W" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/68592_Lampara_estadio_500W.png"
+                  alt="Lámpara Estadio 500W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Lámpara Estadio 500W</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Estadio 500W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Proyector especializado para estadios con módulos orientables y lentes de precisión. Iluminación de largo alcance sin parpadeo apta para video HD.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20Estadio%20500W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara Estadio 500W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lámpara Estadio 300W -->
+          <article tabindex="0" role="region" aria-label="Lámpara Estadio 300W" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/69162_Lampara_estadio_300W.png"
+                  alt="Lámpara Estadio 300W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Lámpara Estadio 300W</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Estadio 300W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Proyector deportivo de 300W de largo alcance para canchas de fútbol, tenis y polideportivos. Chasis anticorrosivo con soporte angular graduable.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20Estadio%20300W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara Estadio 300W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Base para Tubo LED -->
+          <article tabindex="0" role="region" aria-label="Base para Tubo LED" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/BAPH1200D_Base_para_tubo_LED.png"
+                  alt="Base para Tubo LED LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Base para Tubo LED</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Base para Tubo LED">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Gabinete estructurado para fijación y conexión de tubos LED T8. Fabricado con materiales aislantes y contactos de cobre para montaje rápido y seguro.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Base%20para%20Tubo%20LED"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Base para Tubo LED por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lámpara LED Lineal -->
+          <article tabindex="0" role="region" aria-label="Lámpara LED Lineal 100W" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/GEL-LINEAL-100_Lampara_LED_lineal.png"
+                  alt="Lámpara LED Lineal 100W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Lámpara LED Lineal 100W</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara LED Lineal 100W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria lineal suspendida de 100W de alta intensidad lumínica. Conexión continua modular ideal para pasillos de almacenes, talleres y tiendas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20LED%20Lineal%20100W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara LED Lineal por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lámpara Gasolinera 500W -->
+          <article tabindex="0" role="region" aria-label="Lámpara Gasolinera 500W" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/GH-HB-500W_Lampara_gasolinera.png"
+                  alt="Lámpara Gasolinera 500W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Lámpara Gasolinera 500W</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara Gasolinera 500W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria embutida para marquesinas y techos de gasolineras (IP65). Certificación hermética resistente a vapores de hidrocarburos e intemperie.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20Gasolinera%20500W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara Gasolinera por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Wall Pack 40W -->
+          <article tabindex="0" role="region" aria-label="Wall Pack 40W" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/HE-LWPL40W-B_Wall_Pack.png"
+                  alt="Wall Pack 40W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Wall Pack 40W</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Wall Pack 40W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria de pared exterior Wall Pack para perímetro de edificios y muelles de carga. Óptica refractora antideslumbrante y chasis de aluminio resistente a impactos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Wall%20Pack%2040W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Wall Pack 40W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lámpara de Emergencia -->
+          <article tabindex="0" role="region" aria-label="Lámpara de Emergencia" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/L2140_Lampara_de_emergencia.png"
+                  alt="Lámpara de Emergencia LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Lámpara de Emergencia</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Lámpara de Emergencia">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria de emergencia autónoma con batería recargable de respaldo y encendido automático ante cortes eléctricos. Cabezales direccionables.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20de%20Emergencia"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara de Emergencia por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lámpara LED Contra Polvo y Humedad -->
+          <article tabindex="0" role="region" aria-label="LED Antipolvo / Humedad" class="arch-card" data-category="05" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/05_Paneles_y_otras_luminarias/LL0036_Lampara_LED_contra_polvo_humedad.png"
+                  alt="Lámpara LED Contra Polvo y Humedad LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">LED Antipolvo / Humedad</h3>
+              <span class="arch-card__category">Paneles y otras luminarias</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de LED Antipolvo / Humedad">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria hermética estanca (IP65) contra vapor, polvo y salpicaduras. Diseñada para cuartos fríos, lavaderos de autos e instalaciones industriales.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20L%C3%A1mpara%20LED%20Antipolvo%20Humedad"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Lámpara Antipolvo Humedad por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== CATEGORÍA 06: BOMBILLAS (25 productos) ===== -->
+
+          <!-- MR16 7W Luz Blanca -->
+          <article tabindex="0" role="region" aria-label="MR16 7W Luz Blanca" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38187_MR16_7W_luz_blanca.png"
+                  alt="Bombilla MR16 7W Luz Blanca LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">MR16 7W Luz Blanca</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de MR16 7W Luz Blanca">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Foco dicroico LED MR16 de 7W con haz concentrado de 38°. Iluminación de acento brillante para vitrinas comerciales y cielos falsos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20MR16%207W%20Luz%20Blanca"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar MR16 7W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PAR30 E27 11W / PAR38 15W -->
+          <article tabindex="0" role="region" aria-label="PAR30 E27 11W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38386_PAR30_E27_11W_(tambien_PAR38_15W_38744).png"
+                  alt="PAR30 E27 11W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">PAR30 E27 11W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de PAR30 E27 11W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Lámpara spot PAR30 con rosca estándar E27 y reflector interno de precisión. Perfecta para tiendas comerciales, galerías y rieles decorativos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20PAR30%20E27%2011W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar PAR30 E27 11W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tubo LED 18W / 9W -->
+          <article tabindex="0" role="region" aria-label="Tubo LED 18W / 9W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38392_y_38390_Tubo_LED_18W_9W.png"
+                  alt="Tubo LED 18W y 9W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">Tubo LED 18W / 9W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de Tubo LED 18W / 9W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Tubo LED T8 de cristal templado con driver integrado. Reemplazo directo para tubos fluorescentes convencionales, sin balastro ni zumbidos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Tubo%20LED%2018W%209W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar Tubo LED por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- G9 3W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="G9 3W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38401_G9_3W_luz_calida.png"
+                  alt="G9 3W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">G9 3W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de G9 3W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Cápsula LED compacta bi-pin G9 para lámparas decorativas, candiles y apliques de pared. Agradable luz cálida de bajo consumo y mínima emisión de calor.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20G9%203W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar G9 3W Luz Cálida por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- E12 4.5W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="E12 4.5W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38688_E12_4.5_luz_calida.png"
+                  alt="E12 4.5W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">E12 4.5W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de E12 4.5W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla tipo vela con rosca E12 de 4.5W. Emite una atmósfera cálida y acogedora ideal para arañas de cristal y lámparas de mesa clásicas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20E12%204.5W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar E12 4.5W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- MR16 5W Luz Blanca (38690) -->
+          <article tabindex="0" role="region" aria-label="MR16 5W Luz Blanca" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38690_MR16_5W_luz_blanca.png"
+                  alt="MR16 5W Luz Blanca LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">MR16 5W Luz Blanca</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de MR16 5W Luz Blanca">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Foco dicroico LED de 5W y tono blanco nítido. Óptima reproducción de colores con larga vida útil para ojos de buey residenciales y de oficinas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20MR16%205W%20Luz%20Blanca"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar MR16 5W Luz Blanca por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- MR16 5W Luz Blanca (38691) -->
+          <article tabindex="0" role="region" aria-label="MR16 5W GU5.3" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38691_MR16_5W_luz_blanca.png"
+                  alt="MR16 5W Luz Blanca GU5.3 LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">MR16 5W GU5.3</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de MR16 5W GU5.3">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Foco dicroico GU5.3 de 5W de bajo voltaje. Eficiencia lumínica confiable con disipador térmico cerámico para vitrinas y exhibidores.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20MR16%205W%20GU5.3"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar MR16 5W GU5.3 por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- MR16 6W Luz Blanca -->
+          <article tabindex="0" role="region" aria-label="MR16 6W Luz Blanca" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38769_MR16_6W_luz_blanca.png"
+                  alt="MR16 6W Luz Blanca LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">MR16 6W Luz Blanca</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de MR16 6W Luz Blanca">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Foco dicroico de 6W de intensidad reforzada. Haz de luz limpio y uniforme sin radiación UV para acentuar detalles decorativos y cuadros.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20MR16%206W%20Luz%20Blanca"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar MR16 6W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- T120 / T100 40W -->
+          <article tabindex="0" role="region" aria-label="T120 / T100 40W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38889_y_38888_T120_T100_40W_luz_blanca.png"
+                  alt="T120 T100 40W Luz Blanca LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">T120 / T100 40W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de T120 / T100 40W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla de alta potencia tipo campana/martillo T120/T100 de 40W. Gran dispersión lumínica para salones comerciales, garajes y depósitos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20T120%20T100%2040W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar T120 T100 40W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- A60 7W Luz Blanca -->
+          <article tabindex="0" role="region" aria-label="A60 7W Luz Blanca" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/38968_A60_7W_luz_blanca.png"
+                  alt="A60 7W Luz Blanca LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">A60 7W Luz Blanca</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de A60 7W Luz Blanca">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla tradicional tipo pera A60 de 7W con rosca E27. Encendido inmediato y flujo luminoso constante para el uso diario en el hogar.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20A60%207W%20Luz%20Blanca"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar A60 7W Luz Blanca por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- A60 Filamento Ámbar 6W/7W -->
+          <article tabindex="0" role="region" aria-label="A60 Filamento Ámbar 6W/7W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/A19LFA_A60_filamento_ambar_6W_7W.png"
+                  alt="A60 Filamento Ámbar 6W 7W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">A60 Filamento Ámbar 6W/7W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de A60 Filamento Ámbar 6W/7W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla decorativa Edison con vidrio ámbar y filamentos LED vistos. Genera una calidez vintage sofisticada para restaurantes, cafés y salas de estar.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20A60%20Filamento%20%C3%81mbar%206W%207W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar A60 Filamento Ámbar por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- A60 Filamento Ámbar 7W -->
+          <article tabindex="0" role="region" aria-label="A60 Filamento Ámbar 7W" class="arch-card" data-category="06" data-tilt>
             <div class="arch-card__top">
               <div class="arch-card__wire" aria-hidden="true"></div>
               <div class="arch-card__img-box">
                 <img src="assets/img/catalogo/06_Bombillas/A19LFA_A60_filamento_ambar_7W.png"
-                  alt="Bombillas LED y decorativas LamparasGold" class="arch-card__img" loading="lazy" width="220"
-                  height="260">
+                  alt="A60 Filamento Ámbar 7W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
               </div>
             </div>
             <div class="arch-card__body">
-              <h3 class="arch-card__title">Bombillas</h3>
-              <span class="arch-card__category">Catálogo 06</span>
+              <h3 class="arch-card__title">A60 Filamento Ámbar 7W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de A60 Filamento Ámbar 7W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla vintage A60 ámbar con filamentos LED cruzados decorativos. Acentúa la calidez y el estilo retro en lámparas abiertas o suspendidas.</p>
+                </div>
               <div class="arch-card__bottom">
                 <span class="arch-card__price">Cotizar</span>
-                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Bombillas"
-                  target="_blank" rel="noopener noreferrer" class="btn-plus"
-                  aria-label="Cotizar Bombillas por WhatsApp">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20A60%20Filamento%20%C3%81mbar%207W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar A60 Filamento Ámbar 7W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- A60 Filamento Claro 6W/7W -->
+          <article tabindex="0" role="region" aria-label="A60 Filamento Claro 6W/7W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/A19LFC_A60_filamento_claro_6W_7W.png"
+                  alt="A60 Filamento Claro 6W 7W LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">A60 Filamento Claro 6W/7W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de A60 Filamento Claro 6W/7W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla de filamento transparente estilo retro con tecnología LED eficiente. Combina estética clásica con alta eficiencia lumínica.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20A60%20Filamento%20Claro%206W%207W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar A60 Filamento Claro por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- A60 LED 9W/5W -->
+          <article tabindex="0" role="region" aria-label="A60 LED 9W / 5W" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/A60_LED_(38975_9W_calida_38944_9W_blanca_38715_5W_azul).png"
+                  alt="A60 LED 9W Cálida / Blanca / Azul LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">A60 LED 9W / 5W</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de A60 LED 9W / 5W">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla LED estándar multipropósito de 9W/5W con casquillo E27. Gran ángulo de apertura y ahorro energético superior al 85% para todo tipo de ambiente.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20A60%20LED%209W%205W"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar A60 LED 9W 5W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- T32 3W Ámbar -->
+          <article tabindex="0" role="region" aria-label="T32 3W Ámbar" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/FOCO32A3_T32_3W_ambar.png"
+                  alt="T32 3W Ámbar LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">T32 3W Ámbar</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de T32 3W Ámbar">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla tubular vintage T32 con vidrio ámbar y filamento espiralado cálido. Especial para luminarias lineales, barras temáticas y colgantes decorativos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20T32%203W%20%C3%81mbar"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar T32 3W Ámbar por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- G16 5W Ámbar -->
+          <article tabindex="0" role="region" aria-label="G16 5W Ámbar" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/G16A_G16_5W_ambar.png"
+                  alt="G16 5W Ámbar LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">G16 5W Ámbar</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de G16 5W Ámbar">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla esférica globo pequeña G16 con acabado ámbar cálido. Ideal para lámparas de noche, guirnaldas decorativas y apliques de tocador.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20G16%205W%20%C3%81mbar"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar G16 5W Ámbar por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- G16 5W Claro -->
+          <article tabindex="0" role="region" aria-label="G16 5W Claro" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/G16C_G16_5W.png"
+                  alt="G16 5W Claro LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">G16 5W Claro</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de G16 5W Claro">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Globo compacto G16 de cristal transparente con filamento LED visible. Destello cristalino brillante y decorativo para artefactos nórdicos y abiertos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20G16%205W%20Claro"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar G16 5W Claro por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- G40 7W Ámbar -->
+          <article tabindex="0" role="region" aria-label="G40 7W Ámbar" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/G40LFSA_G40_7W_ambar.png"
+                  alt="G40 7W Ámbar LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">G40 7W Ámbar</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de G40 7W Ámbar">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla globo gigante G40 con vidrio ámbar dorado. Pieza protagonista de diseño vintage para colgar individualmente sobre barras o comedores.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20G40%207W%20%C3%81mbar"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar G40 7W Ámbar por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- G40 7W Gris Espejo -->
+          <article tabindex="0" role="region" aria-label="G40 7W Gris Espejo" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/G40LFSS_G40_7W_gris_espejo.png"
+                  alt="G40 7W Gris Espejo LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">G40 7W Gris Espejo</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de G40 7W Gris Espejo">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Globo grande G40 con acabado ahumado gris espejo moderno. Efecto visual sofisticado y exclusivo para espacios contemporáneos y de estilo industrial.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20G40%207W%20Gris%20Espejo"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar G40 7W Gris Espejo por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- T32 3W Claro -->
+          <article tabindex="0" role="region" aria-label="T32 3W Claro" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/OCO32T3_T32_3W_claro.png"
+                  alt="T32 3W Claro LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">T32 3W Claro</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de T32 3W Claro">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla tubular delgada T32 de cristal claro y filamento vertical de alta definición. Perfecta para lámparas cilíndricas y apliques de espejo.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20T32%203W%20Claro"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar T32 3W Claro por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PAR20 7W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="PAR20 7W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/PAR20_7W_luz_calida.png"
+                  alt="PAR20 7W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">PAR20 7W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de PAR20 7W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Spot reflector PAR20 de 7W para iluminación puntual cálida y relajante. Excelente direccionamiento del haz para áreas de relajación y pasillos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20PAR20%207W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar PAR20 7W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PAR30 12W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="PAR30 12W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/PAR30_12W_luz_calida.png"
+                  alt="PAR30 12W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">PAR30 12W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de PAR30 12W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Luminaria spot PAR30 de 12W con rosca E27 y reflector facetado. Luz cálida envolvente y potente para áreas de recepción, lobbies y restaurantes.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20PAR30%2012W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar PAR30 12W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PAR38 16W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="PAR38 16W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/PAR38_16W_luz_calida.png"
+                  alt="PAR38 16W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">PAR38 16W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de PAR38 16W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Foco reflector PAR38 de 16W de gran alcance y óptica estanca (IP65). Diseñado para resaltar vegetación en jardines, palmeras y fachadas.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20PAR38%2016W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar PAR38 16W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PAR38 21W Luz Cálida -->
+          <article tabindex="0" role="region" aria-label="PAR38 21W Luz Cálida" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/PAR38_21W_luz_calida.png"
+                  alt="PAR38 21W Luz Cálida LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">PAR38 21W Luz Cálida</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de PAR38 21W Luz Cálida">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Máxima potencia en reflector PAR38 (21W) para bañado de muros exteriores y paisajismo. Resistente al agua y polvo con haz cálido de alto impacto.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20PAR38%2021W%20Luz%20C%C3%A1lida"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar PAR38 21W por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ST21 6W Ámbar -->
+          <article tabindex="0" role="region" aria-label="ST21 6W Ámbar" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/ST2LFA_ST21_6W_ambar.png"
+                  alt="ST21 6W Ámbar LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">ST21 6W Ámbar</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de ST21 6W Ámbar">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla vintage en forma de pera ST21 (ST64) con cristal ámbar. El clásico estilo retro Edison para lámparas colgantes y ambientes rústicos.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ST21%206W%20%C3%81mbar"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar ST21 6W Ámbar por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ST21 6W Claro -->
+          <article tabindex="0" role="region" aria-label="ST21 6W Claro" class="arch-card" data-category="06" data-tilt>
+            <div class="arch-card__top">
+              <div class="arch-card__wire" aria-hidden="true"></div>
+              <div class="arch-card__img-box">
+                <img src="assets/img/catalogo/06_Bombillas/ST2LFC_ST21_6W_claro.png"
+                  alt="ST21 6W Claro LamparasGold" class="arch-card__img" loading="lazy" width="220" height="260">
+              </div>
+            </div>
+            <div class="arch-card__body">
+              <h3 class="arch-card__title">ST21 6W Claro</h3>
+              <span class="arch-card__category">Bombillas</span>
+                <button type="button" class="arch-card__toggle-hint" aria-expanded="false" aria-label="Ver detalles de ST21 6W Claro">
+                  <span class="arch-card__toggle-text">Ver detalles</span>
+                  <svg class="arch-card__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="arch-card__desc" aria-hidden="true">
+                  <p class="arch-card__desc-text">Bombilla clásica ST21 (ST64) de cristal transparente y filamento LED visible. Resalta los contrastes de diseño interior con iluminación brillante.</p>
+                </div>
+              <div class="arch-card__bottom">
+                <span class="arch-card__price">Cotizar</span>
+                <a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ST21%206W%20Claro"
+                  target="_blank" rel="noopener noreferrer" class="btn-plus" aria-label="Cotizar ST21 6W Claro por WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </a>
               </div>
@@ -657,7 +2354,7 @@
     <section class="section section--get-started" id="contact" aria-labelledby="titleContact">
       <div class="container">
 
-        <div class="get-started-box">
+        <div class="get-started-box" data-reveal>
           <div class="ghost-number" aria-hidden="true">
             <span class="ghost-number__num">05</span>
             <span class="ghost-number__line"></span>
@@ -667,7 +2364,7 @@
           <div class="get-started-box__visual">
             <div class="arch-stage arch-stage--get-started">
               <div class="arch arch--peach arch--get-started">
-                <span class="arch__watermark arch__watermark--get-started" aria-hidden="true">LIGHT</span>
+                <span class="arch__watermark arch__watermark--get-started" aria-hidden="true">LUZ</span>
               </div>
               <div class="pendant-wire" aria-hidden="true"></div>
               <div class="pendant-lamp pendant-lamp--get-started" data-pendulum>
@@ -735,36 +2432,36 @@
       <div class="footer__nav-cols">
 
         <div class="footer__col">
-          <h4 class="footer__col-title">About</h4>
+          <h4 class="footer__col-title">Nosotros</h4>
           <ul class="footer__col-list">
-            <li><a href="#our-products">About Us</a></li>
-            <li><a href="#popular">News &amp; Blog</a></li>
+            <li><a href="#why-us">Sobre Nosotros</a></li>
+            <li><a href="#popular">Noticias y Novedades</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Movement</h4>
+          <h4 class="footer__col-title">Luminarias</h4>
           <ul class="footer__col-list">
-            <li><a href="#why-us">What LamparasGold</a></li>
-            <li><a href="#contact">Support Us</a></li>
+            <li><a href="#our-products">Catálogo Completo</a></li>
+            <li><a href="#popular">Productos Destacados</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Company</h4>
+          <h4 class="footer__col-title">Empresa</h4>
           <ul class="footer__col-list">
-            <li><a href="#why-us">Why LamparasGold</a></li>
-            <li><a href="#popular">Capital</a></li>
+            <li><a href="#why-us">¿Por Qué LamparasGold?</a></li>
+            <li><a href="#contact">Proyectos y Asesoría</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Support</h4>
+          <h4 class="footer__col-title">Atención</h4>
           <ul class="footer__col-list">
-            <li><a href="#why-us">FAQs</a></li>
-            <li><a href="#contact">Support Center</a></li>
+            <li><a href="#why-us">Garantía y Calidad</a></li>
+            <li><a href="#contact">Centro de Contacto</a></li>
             <li><a href="https://wa.me/50242710763?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20luminarias"
-                target="_blank" rel="noopener noreferrer">Contact Us</a></li>
+                target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></li>
           </ul>
         </div>
 
@@ -774,10 +2471,10 @@
 
     <!-- Bottom Bar -->
     <div class="container footer__bottom-bar">
-      <p class="footer__copyright">&copy;2026 LamparasGold. All rights reserved</p>
+      <p class="footer__copyright">&copy; 2026 LamparasGold. Todos los derechos reservados</p>
       <div class="footer__legal-links">
-        <a href="#terms">Terms &amp; Agreements</a>
-        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Términos y Condiciones</a>
+        <a href="#privacy">Política de Privacidad</a>
       </div>
     </div>
   </footer>
@@ -788,10 +2485,10 @@
     <div class="modal__overlay" id="modalOverlay"></div>
     <div class="modal__content">
       <button class="modal__close" id="modalClose" aria-label="Cerrar modal">&times;</button>
-      <h3 class="modal__title" id="modalTitle">LamparasGold Architectural Experience</h3>
+      <h3 class="modal__title" id="modalTitle">Experiencia en Iluminación LamparasGold</h3>
       <div class="modal__video-wrapper">
         <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?enablejsapi=1"
-          title="LamparasGold Lighting Video Presentation" frameborder="0"
+          title="Presentación en Video de Iluminación LamparasGold" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>

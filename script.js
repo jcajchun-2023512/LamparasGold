@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
+  const navBackdrop = document.getElementById('navBackdrop');
 
   const handleNavScroll = () => {
     if (window.scrollY > 40) {
@@ -29,23 +30,53 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleNavScroll, { passive: true });
   handleNavScroll();
 
-  // Menú hamburguesa accesible
+  // Menú drawer móvil accesible con backdrop oscurecido
+  const closeMobileMenu = () => {
+    if (!navLinks) return;
+    navLinks.classList.remove('is-open');
+    if (menuToggle) {
+      menuToggle.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    if (navBackdrop) navBackdrop.classList.remove('is-active');
+    document.body.style.overflow = '';
+  };
+
+  const openMobileMenu = () => {
+    if (!navLinks) return;
+    navLinks.classList.add('is-open');
+    if (menuToggle) {
+      menuToggle.classList.add('is-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    if (navBackdrop) navBackdrop.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  };
+
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('is-open');
-      menuToggle.classList.toggle('is-open', isOpen);
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      const isOpen = navLinks.classList.contains('is-open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
+
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', closeMobileMenu);
+    }
 
     // Cerrar menú al hacer clic en un enlace
     navLinks.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('is-open');
-        menuToggle.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Cerrar menú al pulsar la tecla Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
     });
   }
 
@@ -140,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let mouseCurrentAngle = 0;
       let nextGustTime = performance.now() + 4000;
 
-      // Reacción al cursor en el Hero (empuje suave con amortiguación natural)
+      // Reacción al cursor en el Hero (empuje suave con amortiguación natural en desktop)
       if (!isTouchDevice) {
         heroVisual.addEventListener('mousemove', (e) => {
           const rect = heroVisual.getBoundingClientRect();
@@ -152,6 +183,39 @@ document.addEventListener('DOMContentLoaded', () => {
           mouseTargetAngle = 0;
         });
       }
+
+      // Reacción táctil hiperrealista para teléfono (empuje con el dedo + inercia al soltar)
+      let isHeroTouching = false;
+
+      heroVisual.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          isHeroTouching = true;
+          const touchX = e.touches[0].clientX;
+          const rect = heroVisual.getBoundingClientRect();
+          const relativeX = Math.max(-0.5, Math.min(0.5, (touchX - rect.left) / rect.width - 0.5));
+          mouseTargetAngle = relativeX * HERO_LAMP_CONFIG.pendulum.mousePushMax * 2.2;
+        }
+      }, { passive: true });
+
+      heroVisual.addEventListener('touchmove', (e) => {
+        if (!isHeroTouching || !e.touches || e.touches.length === 0) return;
+        const touchX = e.touches[0].clientX;
+        const rect = heroVisual.getBoundingClientRect();
+        const relativeX = Math.max(-0.5, Math.min(0.5, (touchX - rect.left) / rect.width - 0.5));
+        mouseTargetAngle = relativeX * HERO_LAMP_CONFIG.pendulum.mousePushMax * 2.2;
+      }, { passive: true });
+
+      const onHeroTouchEnd = () => {
+        if (!isHeroTouching) return;
+        isHeroTouching = false;
+        // Al soltar el dedo, transferir momento inercial a la oscilación libre
+        const releaseImpulse = (mouseTargetAngle * Math.PI / 180) * 0.45;
+        angularVelocity += releaseImpulse;
+        mouseTargetAngle = 0;
+      };
+
+      heroVisual.addEventListener('touchend', onHeroTouchEnd, { passive: true });
+      heroVisual.addEventListener('touchcancel', onHeroTouchEnd, { passive: true });
 
       // --- Variables del Motor de Iluminación Orgánica ---
       let lightState = 'ON_HOLD'; // 'IGNITION', 'ON_HOLD', 'COOLDOWN', 'OFF_HOLD'
@@ -377,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
           statsObserver.disconnect();
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.15 });
     statsObserver.observe(statsRow);
   }
 
@@ -420,10 +484,11 @@ document.addEventListener('DOMContentLoaded', () => {
     inertiaFactor: 150,            // Multiplicador de inercia al soltar arrastre/swipe
     pulseDuration: 550,            // Duración del pulso en botón "+" (ms)
     responsive: [
-      { minWidth: 1200, visibleCards: 4, activeOffset: 1 },  // Desktop: 4 tarjetas, activa es la 2da (índice 1)
-      { minWidth: 992,  visibleCards: 3, activeOffset: 1 },  // Laptop pequeña: 3 tarjetas, activa es la 2da
-      { minWidth: 680,  visibleCards: 2, activeOffset: 0 },  // Tablet: 2 tarjetas, activa es la 1ra
-      { minWidth: 0,    visibleCards: 1.18, activeOffset: 0 } // Móvil: 1 tarjeta + fragmento de la siguiente
+      { minWidth: 1200, visibleCards: 4, activeOffset: 1 },   // Desktop: 4 tarjetas, activa es la 2da
+      { minWidth: 992,  visibleCards: 3, activeOffset: 1 },   // Laptop pequeña: 3 tarjetas
+      { minWidth: 680,  visibleCards: 2, activeOffset: 0 },   // Tablet: 2 tarjetas
+      { minWidth: 480,  visibleCards: 1.25, activeOffset: 0 }, // Teléfono grande: 1 tarjeta + peek 25%
+      { minWidth: 0,    visibleCards: 1.14, activeOffset: 0 }  // Teléfono estándar: 1 tarjeta + peek 14%
     ]
   };
 
@@ -632,17 +697,18 @@ document.addEventListener('DOMContentLoaded', () => {
       sectionObserver.observe(popularSection);
     }
 
-    // Arrastre con mouse y swipe táctil con inercia
+    // Arrastre con mouse en desktop y swipe táctil fluido con Axis Locking en teléfono
     let startX = 0;
     let currentDeltaX = 0;
     let lastMoveX = 0;
     let lastMoveTime = 0;
     let dragVelocity = 0;
 
-    const onPointerDown = (e) => {
+    // --- Control Desktop (Mouse) ---
+    const onMouseDown = (e) => {
       if (isTransitioning) return;
       isDragging = true;
-      startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      startX = e.clientX;
       lastMoveX = startX;
       lastMoveTime = performance.now();
       currentDeltaX = 0;
@@ -653,16 +719,15 @@ document.addEventListener('DOMContentLoaded', () => {
       popularViewport.classList.add('is-dragging');
     };
 
-    const onPointerMove = (e) => {
+    const onMouseMove = (e) => {
       if (!isDragging) return;
-      const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-      currentDeltaX = clientX - startX;
+      currentDeltaX = e.clientX - startX;
 
       const now = performance.now();
       const dt = now - lastMoveTime;
       if (dt > 10) {
-        dragVelocity = (clientX - lastMoveX) / dt;
-        lastMoveX = clientX;
+        dragVelocity = (e.clientX - lastMoveX) / dt;
+        lastMoveX = e.clientX;
         lastMoveTime = now;
       }
 
@@ -670,13 +735,12 @@ document.addEventListener('DOMContentLoaded', () => {
       popularTrack.style.transform = `translate3d(${currentTransform.toFixed(2)}px, 0, 0)`;
     };
 
-    const onPointerUp = () => {
+    const onMouseUp = () => {
       if (!isDragging) return;
       isDragging = false;
       popularViewport.classList.remove('is-dragging');
       popularTrack.classList.remove('no-transition');
 
-      // Inercia al soltar
       const inertia = dragVelocity * CAROUSEL_CONFIG.inertiaFactor;
       const totalDisplacement = currentDeltaX + inertia;
       const threshold = cardWidth * CAROUSEL_CONFIG.dragThreshold;
@@ -694,13 +758,110 @@ document.addEventListener('DOMContentLoaded', () => {
       resetAutoplay();
     };
 
-    popularViewport.addEventListener('mousedown', onPointerDown);
-    window.addEventListener('mousemove', onPointerMove);
-    window.addEventListener('mouseup', onPointerUp);
+    popularViewport.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
 
-    popularViewport.addEventListener('touchstart', onPointerDown, { passive: true });
-    window.addEventListener('touchmove', onPointerMove, { passive: true });
-    window.addEventListener('touchend', onPointerUp);
+    // --- Control Táctil Inteligente en Teléfono (Axis Locking: Scroll vs Swipe) ---
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isTouchDetermined = false;
+    let isHorizontalSwipe = false;
+
+    popularViewport.addEventListener('touchstart', (e) => {
+      if (isTransitioning || !e.touches || e.touches.length === 0) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      lastMoveX = touchStartX;
+      lastMoveTime = performance.now();
+      currentDeltaX = 0;
+      dragVelocity = 0;
+      isTouchDetermined = false;
+      isHorizontalSwipe = false;
+      stopAutoplay();
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const curX = e.touches[0].clientX;
+      const curY = e.touches[0].clientY;
+      const diffX = curX - touchStartX;
+      const diffY = curY - touchStartY;
+
+      // Determinar eje de movimiento si no está decidido y supera un micro-umbral
+      if (!isTouchDetermined) {
+        if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
+          isTouchDetermined = true;
+          if (Math.abs(diffX) >= Math.abs(diffY)) {
+            // Desplazamiento horizontal: tomar control del carrusel
+            isHorizontalSwipe = true;
+            window._isPopularDragging = true;
+            popularTrack.classList.add('no-transition');
+            popularViewport.classList.add('is-dragging');
+          } else {
+            // Desplazamiento vertical: permitir scroll nativo sin mover el carrusel
+            isHorizontalSwipe = false;
+            return;
+          }
+        } else {
+          return;
+        }
+      }
+
+      if (!isHorizontalSwipe) return;
+
+      if (e.cancelable) {
+        e.preventDefault(); // Prevenir interferencia de scroll vertical mientras se desliza horizontalmente
+      }
+
+      currentDeltaX = diffX;
+      const now = performance.now();
+      const dt = now - lastMoveTime;
+      if (dt > 10) {
+        dragVelocity = (curX - lastMoveX) / dt;
+        lastMoveX = curX;
+        lastMoveTime = now;
+      }
+
+      const currentTransform = -currentIndex * step + currentDeltaX;
+      popularTrack.style.transform = `translate3d(${currentTransform.toFixed(2)}px, 0, 0)`;
+    }, { passive: false });
+
+    const onTouchEnd = () => {
+      if (!isHorizontalSwipe) {
+        isTouchDetermined = false;
+        resetAutoplay();
+        return;
+      }
+
+      isHorizontalSwipe = false;
+      isTouchDetermined = false;
+      popularViewport.classList.remove('is-dragging');
+      popularTrack.classList.remove('no-transition');
+
+      const inertia = dragVelocity * CAROUSEL_CONFIG.inertiaFactor;
+      const totalDisplacement = currentDeltaX + inertia;
+      const threshold = cardWidth * CAROUSEL_CONFIG.dragThreshold;
+
+      if (Math.abs(totalDisplacement) > threshold) {
+        if (totalDisplacement < 0) {
+          moveTo(currentIndex + 1, true);
+        } else {
+          moveTo(currentIndex - 1, true);
+        }
+      } else {
+        moveTo(currentIndex, true);
+      }
+
+      setTimeout(() => {
+        window._isPopularDragging = false;
+      }, 100);
+
+      resetAutoplay();
+    };
+
+    window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
 
     // Inicialización y Resize
     window.addEventListener('resize', () => {
@@ -875,5 +1036,132 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 650);
     });
   });
+
+  /* ------------------------------------------------------------------------
+     13. INTERACCIÓN DE TARJETAS DE PRODUCTO (ARCH-CARD):
+     - Pequeña descripción interactiva al hacer clic
+     - Manejo accesible (teclado + clic en tarjeta o botón 'Ver detalles')
+     - Cierre automático de otras tarjetas abiertas para mantener armonía visual
+     ------------------------------------------------------------------------ */
+  const initProductCardDescriptions = () => {
+    const cards = document.querySelectorAll('.arch-card');
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      // Evitar que el clic en enlaces internos (WhatsApp, cotizar) colapse la tarjeta
+      const interactiveLinks = card.querySelectorAll('a, .btn-plus');
+      interactiveLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      });
+
+      const toggleCard = (e) => {
+        // Si el usuario está arrastrando/deslizando en el carrusel, no expandir detalles
+        if (window._isPopularDragging) {
+          return;
+        }
+
+        // Si el clic proviene de un link o botón con enlace a WhatsApp, no interferir
+        if (e && e.target && e.target.closest('a')) {
+          return;
+        }
+
+        const isCurrentlyExpanded = card.classList.contains('is-expanded');
+
+        // Cerrar otras tarjetas abiertas para mantener la cuadrícula ordenada
+        cards.forEach((otherCard) => {
+          if (otherCard !== card && otherCard.classList.contains('is-expanded')) {
+            otherCard.classList.remove('is-expanded');
+            const otherHintBtn = otherCard.querySelector('.arch-card__toggle-hint');
+            if (otherHintBtn) {
+              otherHintBtn.setAttribute('aria-expanded', 'false');
+              const textSpan = otherHintBtn.querySelector('.arch-card__toggle-text');
+              if (textSpan) textSpan.textContent = 'Ver detalles';
+            }
+            const otherDesc = otherCard.querySelector('.arch-card__desc');
+            if (otherDesc) otherDesc.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        // Alternar el estado de esta tarjeta
+        if (isCurrentlyExpanded) {
+          card.classList.remove('is-expanded');
+          const hintBtn = card.querySelector('.arch-card__toggle-hint');
+          if (hintBtn) {
+            hintBtn.setAttribute('aria-expanded', 'false');
+            const textSpan = hintBtn.querySelector('.arch-card__toggle-text');
+            if (textSpan) textSpan.textContent = 'Ver detalles';
+          }
+          const desc = card.querySelector('.arch-card__desc');
+          if (desc) desc.setAttribute('aria-hidden', 'true');
+        } else {
+          card.classList.add('is-expanded');
+          const hintBtn = card.querySelector('.arch-card__toggle-hint');
+          if (hintBtn) {
+            hintBtn.setAttribute('aria-expanded', 'true');
+            const textSpan = hintBtn.querySelector('.arch-card__toggle-text');
+            if (textSpan) textSpan.textContent = 'Ocultar detalles';
+          }
+          const desc = card.querySelector('.arch-card__desc');
+          if (desc) desc.setAttribute('aria-hidden', 'false');
+
+          // Pequeño pulso en el botón Cotizar (+) para guiar la acción comercial
+          const plusBtn = card.querySelector('.btn-plus');
+          if (plusBtn) {
+            plusBtn.classList.remove('is-pulsing');
+            void plusBtn.offsetWidth;
+            plusBtn.classList.add('is-pulsing');
+          }
+        }
+      };
+
+      // Clic en la tarjeta o botón de detalles
+      card.addEventListener('click', toggleCard);
+
+      // Accesibilidad: permitir Enter y Espacio
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (!e.target.closest('a')) {
+            e.preventDefault();
+            toggleCard(e);
+          }
+        }
+      });
+    });
+  };
+
+  initProductCardDescriptions();
+
+  /* ------------------------------------------------------------------------
+     14. SCROLL REVEAL CINEMATOGRÁFICO
+     ------------------------------------------------------------------------ */
+  const initScrollReveal = () => {
+    if (prefersReducedMotion) {
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        el.classList.add('is-in-view');
+      });
+      return;
+    }
+
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    if (!revealElements.length) return;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    });
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  };
+
+  initScrollReveal();
 
 });
