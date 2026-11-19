@@ -85,22 +85,20 @@
             <!-- Capa 4b: Resplandor proyectado debajo del arco -->
             <div class="hero-floor-glow" id="heroFloorGlow" aria-hidden="true"></div>
 
-            <!-- Contenedor del péndulo (cable + casquillo + bombilla oscilan juntos desde el borde superior del arco) -->
+            <!-- Contenedor de la luminaria (capas de iluminación realista y encendido/apagado dinámico) -->
             <div class="hero-pendulum" id="heroPendulum">
-              <div class="pendant-wire pendant-wire--hero" aria-hidden="true"></div>
-              <div class="pendant-socket pendant-socket--hero" aria-hidden="true"></div>
-              <div class="pendant-lamp pendant-lamp--hero" id="heroLamp">
+              <div class="pendant-lamp pendant-lamp--hero" id="heroLamp" title="Haz clic para encender o apagar">
                 <!-- Capa 1: Base apagada (imagen atenuada estática con filtro) -->
-                <img src="assets/img/G16C_G16_5W_hanging.png" alt="" aria-hidden="true"
-                  class="pendant-lamp__img pendant-lamp__img--hero lamp-layer lamp-layer--base" width="240"
-                  height="360">
+                <img src="assets/img/cobra_hero.png" alt="" aria-hidden="true"
+                  class="pendant-lamp__img pendant-lamp__img--hero lamp-layer lamp-layer--base" width="340"
+                  height="247">
 
                 <!-- Capa 2: Encendida (superpuesta, opacidad animada) -->
-                <img src="assets/img/G16C_G16_5W_hanging.png" alt="Bombilla LED Vintage G16C 5W LamparasGold"
+                <img src="assets/img/cobra_hero_lit.png" alt="Luminaria LED Cobra LamparasGold"
                   class="pendant-lamp__img pendant-lamp__img--hero lamp-layer lamp-layer--lit" id="heroLampLit"
-                  width="240" height="360">
+                  width="340" height="247">
 
-                <!-- Capa 3: Halo de luz del filamento cálido de la bombilla -->
+                <!-- Capa 3: Halos de luz de los 3 módulos LED -->
                 <div class="lamp-bulbs" id="lampBulbs" aria-hidden="true"></div>
               </div>
             </div>
@@ -356,7 +354,7 @@
               <div class="pendant-wire" aria-hidden="true"></div>
               <div class="pendant-lamp pendant-lamp--feature" data-pendulum>
                 <div class="pendant-lamp__glow" aria-hidden="true"></div>
-                <img src="assets/img/catalogo/04_Street_Light_Solar/60086G_Cobra_Solar_120W.png"
+                <img src="assets/img/G16C_G16_5W_hanging.png"
                   alt="Luminaria Industrial High Bay UFO LamparasGold" class="pendant-lamp__img" loading="lazy"
                   width="380" height="480">
               </div>

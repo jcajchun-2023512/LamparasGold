@@ -82,45 +82,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     CONFIGURACIÓN TAREA 2: LÁMPARA DEL HERO (BALANCEO + ILUMINACIÓN NATURAL)
+     CONFIGURACIÓN TAREA 2: LUMINARIA COBRA DEL HERO (ILUMINACIÓN NATURAL)
      ========================================================================== */
   const HERO_LAMP_CONFIG = {
-    // 1. Simulación de péndulo físico amortiguado y ráfagas suaves
+    // 1. Simulación de flotación cinemática suave y microinclinación al cursor
     pendulum: {
       period: 5800,                // Periodo de oscilación principal en ms (~5.8 s)
-      damping: 0.032,              // Coeficiente de amortiguación (oscilación continua realista)
-      secondaryAmp: 0.65,          // Amplitud de microtorsión axial secundaria en grados (< 1°)
-      secondaryPeriod: 4100,       // Periodo de torsión axial en ms (~4.1 s)
-      gustIntervalMin: 8000,       // Intervalo mínimo para nueva ráfaga aleatoria (ms)
-      gustIntervalMax: 15000,      // Intervalo máximo para nueva ráfaga aleatoria (ms)
-      gustImpulseMin: 1.2,         // Impulso angular mínimo aportado por la ráfaga (grados)
-      gustImpulseMax: 2.4,         // Impulso angular máximo aportado por la ráfaga (grados)
-      mousePushFactor: 0.04,       // Sensibilidad al empuje horizontal del cursor en el Hero
-      mousePushMax: 3.5            // Límite de deflexión máxima provocada por el mouse (grados)
+      damping: 0.038,              // Coeficiente de amortiguación
+      secondaryAmp: 0.8,           // Amplitud de microinclinación en grados (< 1°)
+      secondaryPeriod: 4500,       // Periodo de torsión en ms
+      gustIntervalMin: 7000,       // Intervalo mínimo para nueva oscilación sutil (ms)
+      gustIntervalMax: 14000,      // Intervalo máximo para nueva oscilación sutil (ms)
+      gustImpulseMin: 0.8,         // Impulso angular mínimo (grados)
+      gustImpulseMax: 1.8,         // Impulso angular máximo (grados)
+      mousePushFactor: 0.03,       // Sensibilidad al cursor en el Hero
+      mousePushMax: 2.5            // Límite de deflexión máxima por mouse (grados)
     },
 
-    // 2. Coordenadas de la bombilla G16C 5W (filamento cálido central)
+    // 2. Coordenadas de los 3 módulos COB LED de la luminaria Cobra
     bulbs: [
-      { id: 1, x: 50.0, y: 68.0 }
+      { id: 1, x: 21.7, y: 26.7 },
+      { id: 2, x: 39.1, y: 43.2 },
+      { id: 3, x: 54.6, y: 56.7 }
     ],
 
-    // 3. Ciclo orgánico de encendido y enfriamiento de filamento incandescente
+    // 3. Ciclo de encendido y apagado realista para luminaria LED
     lighting: {
-      flickerCount: 3,             // Número de parpadeos de vacilación inicial (2 a 3)
-      flickerIntervalMin: 60,      // Duración mínima de cada parpadeo rápido (ms)
-      flickerIntervalMax: 140,     // Duración máxima de cada parpadeo rápido (ms)
-      ignitionRampMin: 650,        // Tiempo mínimo para alcanzar el 100% de luz (ms)
-      ignitionRampMax: 900,        // Tiempo máximo para alcanzar el 100% de luz (ms)
-      bulbOffsetMax: 0,            // Foco único: sin desfase entre focos
-      onHoldMin: 6000,             // Tiempo mínimo en estado encendido continuo (ms)
-      onHoldMax: 12000,            // Tiempo máximo en estado encendido continuo (ms)
-      breathingAmp: 0.035,         // Variación sutil de respiración incandescente (±3.5%)
-      breathingFreq: 0.0028,       // Frecuencia de la respiración sutil
-      cooldownMin: 950,            // Tiempo mínimo de enfriamiento paulatino al apagar (ms)
-      cooldownMax: 1450,           // Tiempo máximo de enfriamiento paulatino al apagar (ms)
-      offHoldMin: 1500,            // Tiempo mínimo en estado apagado / reposo (ms)
-      offHoldMax: 3000,            // Tiempo máximo en estado apagado / reposo (ms)
-      ambientLag: 0.08             // Factor de inercia/retraso visual del resplandor del arco
+      flickerCount: 2,             // 2 microdestellos de cebado en el encendido
+      flickerIntervalMin: 50,      // Duración mínima de cada destello (ms)
+      flickerIntervalMax: 100,     // Duración máxima de cada destello (ms)
+      ignitionRampMin: 350,        // Tiempo para alcanzar el 100% de luz (ms)
+      ignitionRampMax: 550,        // Tiempo para alcanzar el 100% de luz (ms)
+      bulbOffsetMax: 90,           // Desfase en cascada entre los 3 módulos LED
+      onHoldMin: 4500,             // Tiempo encendida continuo (ms)
+      onHoldMax: 7500,             // Tiempo encendida continuo (ms)
+      breathingAmp: 0.02,          // Variación sutil de respiración lumínica (±2%)
+      breathingFreq: 0.003,        // Frecuencia de la respiración
+      cooldownMin: 650,            // Tiempo paulatino de enfriamiento/apagado (ms)
+      cooldownMax: 950,            // Tiempo paulatino de enfriamiento/apagado (ms)
+      offHoldMin: 1800,            // Tiempo apagada en reposo (ms)
+      offHoldMax: 3000,            // Tiempo apagada en reposo (ms)
+      ambientLag: 0.09             // Inercia visual de resplandor ambiental
     }
   };
 
@@ -235,17 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const setupIgnitionState = (now) => {
         lightState = 'IGNITION';
         stateStartTime = now;
-        bulbOffsets = HERO_LAMP_CONFIG.bulbs.map(() => Math.random() * HERO_LAMP_CONFIG.lighting.bulbOffsetMax);
+        bulbOffsets = [0, 45, 90]; // Encendido en cascada: módulo 1, luego 2, luego 3
         const rampDuration = randomRange(HERO_LAMP_CONFIG.lighting.ignitionRampMin, HERO_LAMP_CONFIG.lighting.ignitionRampMax);
 
-        // Generar 2 o 3 parpadeos rápidos e irregulares
+        // Generar 2 microdestellos rápidos de cebado al encender
         const count = HERO_LAMP_CONFIG.lighting.flickerCount;
         flickers = [];
         let currTime = 0;
         for (let i = 0; i < count; i++) {
           const onTime = randomRange(HERO_LAMP_CONFIG.lighting.flickerIntervalMin, HERO_LAMP_CONFIG.lighting.flickerIntervalMax);
-          const offTime = randomRange(HERO_LAMP_CONFIG.lighting.flickerIntervalMin * 0.7, HERO_LAMP_CONFIG.lighting.flickerIntervalMax * 0.9);
-          flickers.push({ start: currTime, end: currTime + onTime, peak: randomRange(0.35, 0.75) });
+          const offTime = randomRange(HERO_LAMP_CONFIG.lighting.flickerIntervalMin * 0.6, HERO_LAMP_CONFIG.lighting.flickerIntervalMax * 0.8);
+          flickers.push({ start: currTime, end: currTime + onTime, peak: randomRange(0.4, 0.75) });
           currTime += onTime + offTime;
         }
         flickers.rampStart = currTime;
@@ -375,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bulbHalos.forEach((halo, idx) => {
           const bOp = bulbOpacities[idx];
           halo.style.opacity = bOp.toFixed(3);
-          halo.style.transform = `translate(-50%, -50%) scale(${(0.85 + bOp * 0.25).toFixed(3)})`;
+          halo.style.transform = `translate(-50%, -50%) rotate(-25deg) scale(${(0.85 + bOp * 0.25).toFixed(3)})`;
         });
 
         // 5. Inercia lumínica en los resplandores ambiental del arco y del suelo
@@ -416,6 +418,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, { threshold: 0.05 });
       heroObserver.observe(heroVisual);
+
+      // Alternar encendido/apagado al hacer clic en la luminaria
+      heroLamp.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const now = performance.now();
+        if (lightState === 'ON_HOLD' || lightState === 'IGNITION') {
+          setupCooldownState(now);
+        } else {
+          setupIgnitionState(now);
+        }
+      });
 
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
