@@ -1517,9 +1517,22 @@ button {
 }
 
 .btn--contact-wa {
-  padding: 14px 36px;
-  font-size: 1rem;
-  gap: 10px;
+  padding: 22px 56px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  gap: 6px;
+  flex-direction: column;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.btn--contact-wa__sub {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: 6px;
 }
 
 .get-started-quick-contact {
@@ -2290,10 +2303,10 @@ button {
 
   .btn--contact-wa {
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
     justify-content: center;
-    padding: 13px 24px;
-    font-size: 0.95rem;
+    padding: 18px 28px;
+    font-size: 1.05rem;
   }
 
   .get-started-quick-contact {
