@@ -1021,10 +1021,10 @@ button {
   justify-content: space-between;
   box-shadow: var(--shadow-card);
   border: 1px solid rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(8px);
   position: relative;
   cursor: pointer;
   outline: none;
+  touch-action: pan-y;
   transition: transform 0.45s var(--ease-spring), box-shadow 0.45s var(--ease-editorial), background-color 0.35s ease, border-color 0.35s ease;
   min-height: 380px;
 }
@@ -1411,6 +1411,8 @@ button {
   width: 100%;
   min-width: unset;
   flex: unset;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 380px;
 }
 
 /* --------------------------------------------------------------------------
@@ -1752,6 +1754,7 @@ button {
 [data-reveal].is-in-view {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 /* Balanceo de lámparas */
@@ -1822,6 +1825,16 @@ button {
 
 /* Tablets Verticales y Dispositivos Móviles (<= 900px) */
 @media (max-width: 900px) {
+  /* Navbar estable en móvil: altura constante para evitar reflows al hacer scroll */
+  .navbar {
+    padding-block: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .navbar.is-scrolled {
+    padding-block: 16px;
+  }
+
   /* Menú Drawer Móvil de Alta Gama */
   .menu-toggle {
     display: flex;
@@ -1995,6 +2008,10 @@ button {
   .section--popular {
     padding-top: 40px;
     padding-bottom: 60px;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
   }
 
   .section-header--with-controls {

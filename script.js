@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
   const navBackdrop = document.getElementById('navBackdrop');
 
+  let isNavbarScrolled = false;
   const handleNavScroll = () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('is-scrolled');
-    } else {
-      navbar.classList.remove('is-scrolled');
+    const shouldScroll = window.scrollY > 40;
+    if (shouldScroll !== isNavbarScrolled) {
+      isNavbarScrolled = shouldScroll;
+      navbar.classList.toggle('is-scrolled', shouldScroll);
     }
   };
   window.addEventListener('scroll', handleNavScroll, { passive: true });
@@ -159,7 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       let isHeroVisible = true;
+      let heroRafId = null;
       let lastFrameTime = performance.now();
+      let heroVisualRect = null;
 
       // --- Variables físicas del Péndulo ---
       let angle = 0;              // Ángulo actual del péndulo principal (grados)
@@ -190,9 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
       heroVisual.addEventListener('touchstart', (e) => {
         if (e.touches && e.touches.length > 0) {
           isHeroTouching = true;
+          heroVisualRect = heroVisual.getBoundingClientRect();
           const touchX = e.touches[0].clientX;
-          const rect = heroVisual.getBoundingClientRect();
-          const relativeX = Math.max(-0.5, Math.min(0.5, (touchX - rect.left) / rect.width - 0.5));
+          const relativeX = Math.max(-0.5, Math.min(0.5, (touchX - heroVisualRect.left) / heroVisualRect.width - 0.5));
           mouseTargetAngle = relativeX * HERO_LAMP_CONFIG.pendulum.mousePushMax * 2.2;
         }
       }, { passive: true });
@@ -200,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroVisual.addEventListener('touchmove', (e) => {
         if (!isHeroTouching || !e.touches || e.touches.length === 0) return;
         const touchX = e.touches[0].clientX;
-        const rect = heroVisual.getBoundingClientRect();
+        const rect = heroVisualRect || heroVisual.getBoundingClientRect();
         const relativeX = Math.max(-0.5, Math.min(0.5, (touchX - rect.left) / rect.width - 0.5));
         mouseTargetAngle = relativeX * HERO_LAMP_CONFIG.pendulum.mousePushMax * 2.2;
       }, { passive: true });
@@ -271,8 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Loop de renderizado cinemático a 60 fps
       const renderHeroLamp = (now) => {
         if (!isHeroVisible || document.hidden) {
-          lastFrameTime = now;
-          requestAnimationFrame(renderHeroLamp);
+          heroRafId = null;
           return;
         }
 
@@ -385,16 +387,43 @@ document.addEventListener('DOMContentLoaded', () => {
           heroFloorGlow.style.opacity = (0.1 + 0.85 * ambientGlow).toFixed(3);
         }
 
-        requestAnimationFrame(renderHeroLamp);
+        heroRafId = requestAnimationFrame(renderHeroLamp);
       };
 
-      requestAnimationFrame(renderHeroLamp);
+      const startHeroAnimation = () => {
+        if (!heroRafId && isHeroVisible && !document.hidden) {
+          lastFrameTime = performance.now();
+          heroRafId = requestAnimationFrame(renderHeroLamp);
+        }
+      };
+
+      const stopHeroAnimation = () => {
+        if (heroRafId) {
+          cancelAnimationFrame(heroRafId);
+          heroRafId = null;
+        }
+      };
+
+      startHeroAnimation();
 
       // IntersectionObserver para pausar el loop cuando el Hero sale de pantalla
       const heroObserver = new IntersectionObserver((entries) => {
         isHeroVisible = entries[0].isIntersecting;
-      }, { threshold: 0.1 });
+        if (isHeroVisible) {
+          startHeroAnimation();
+        } else {
+          stopHeroAnimation();
+        }
+      }, { threshold: 0.05 });
       heroObserver.observe(heroVisual);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopHeroAnimation();
+        } else if (isHeroVisible) {
+          startHeroAnimation();
+        }
+      });
     }
   }
 
@@ -473,39 +502,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     CONFIGURACIÓN TAREA 1: CARRUSEL AUTOMÁTICO EN "POPULAR PRODUCT"
+     SECCIÓN 2: CARRUSEL CONTROLADO POR EL USUARIO ("POPULAR PRODUCT")
+     - Sin flechas visuales de navegación (eliminadas)
+     - Autoplay completamente desactivado (cero temporizadores/intervalos)
+     - Desplazamiento manual mediante swipe táctil en móvil y drag con mouse en desktop
+     - Sin listeners globales no pasivos que bloqueen el hilo del scroll vertical
+     - Posición fija y estable sin reinicios ni saltos inesperados
      ========================================================================== */
   const CAROUSEL_CONFIG = {
-    autoplayInterval: 3500,        // Intervalo entre avances automáticos (ms)
-    transitionDuration: 700,       // Duración del desplazamiento suave (ms)
-    easing: 'cubic-bezier(0.25, 1, 0.5, 1)', // Easing suave (nunca lineal)
+    transitionDuration: 550,       // Duración del desplazamiento suave (ms)
+    easing: 'cubic-bezier(0.25, 1, 0.5, 1)', // Easing suave natural
     gap: 28,                       // Espaciado entre tarjetas en px
-    dragThreshold: 0.18,           // Umbral de arrastre (% ancho de tarjeta para avanzar)
-    inertiaFactor: 150,            // Multiplicador de inercia al soltar arrastre/swipe
+    dragThreshold: 0.15,           // Umbral de arrastre (% ancho de tarjeta para avanzar)
+    inertiaFactor: 120,            // Multiplicador de inercia al soltar arrastre/swipe
     pulseDuration: 550,            // Duración del pulso en botón "+" (ms)
     responsive: [
-      { minWidth: 1200, visibleCards: 4, activeOffset: 1 },   // Desktop: 4 tarjetas, activa es la 2da
-      { minWidth: 992,  visibleCards: 3, activeOffset: 1 },   // Laptop pequeña: 3 tarjetas
+      { minWidth: 1200, visibleCards: 4, activeOffset: 1 },   // Desktop: 4 tarjetas
+      { minWidth: 992,  visibleCards: 3, activeOffset: 1 },   // Laptop: 3 tarjetas
       { minWidth: 680,  visibleCards: 2, activeOffset: 0 },   // Tablet: 2 tarjetas
       { minWidth: 480,  visibleCards: 1.25, activeOffset: 0 }, // Teléfono grande: 1 tarjeta + peek 25%
       { minWidth: 0,    visibleCards: 1.14, activeOffset: 0 }  // Teléfono estándar: 1 tarjeta + peek 14%
     ]
   };
 
-  /* ------------------------------------------------------------------------
-     6. TAREA 1: CARRUSEL AUTOMÁTICO INFINITO ("POPULAR PRODUCT")
-     ------------------------------------------------------------------------ */
   const popularViewport = document.getElementById('popularViewport');
   const popularTrack = document.getElementById('popularTrack');
-  const popularPrev = document.getElementById('popularPrev');
-  const popularNext = document.getElementById('popularNext');
-  const popularSection = document.getElementById('popular');
 
-  if (popularViewport && popularTrack && popularPrev && popularNext) {
+  if (popularViewport && popularTrack) {
     const originalCards = Array.from(popularTrack.children);
     const originalCount = originalCards.length;
 
-    // Clonar tarjetas al inicio y al final para loop continuo infinito sin saltos
+    // Clonar tarjetas al inicio y al final para loop continuo al deslizar
     const clonesBefore = originalCards.map(c => c.cloneNode(true));
     const clonesAfter = originalCards.map(c => c.cloneNode(true));
 
@@ -519,8 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const allCards = Array.from(popularTrack.children);
-    const totalCount = allCards.length;
-    const baseOffset = originalCount; // Desfase inicial para posicionar en tarjetas reales
+    const baseOffset = originalCount;
 
     let currentIndex = baseOffset;
     let visibleCards = 4;
@@ -528,11 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cardWidth = 280;
     let step = 308;
     let isTransitioning = false;
-    let autoplayTimer = null;
-    let isHovered = false;
-    let isFocused = false;
     let isDragging = false;
-    let isSectionVisible = true;
 
     // Calcular medidas y dimensiones responsive
     const updateDimensions = () => {
@@ -558,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateActiveState(false);
     };
 
-    // Actualizar estado resaltado dinámico de la tarjeta activa y pulso en botón "+"
+    // Actualizar estado resaltado de la tarjeta activa
     const updateActiveState = (triggerPulse = true) => {
       allCards.forEach(card => card.classList.remove('is-active'));
       const activeCardIndex = currentIndex + activeOffset;
@@ -571,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const btnPlus = activeCard.querySelector('.btn-plus');
           if (btnPlus) {
             btnPlus.classList.remove('is-pulsing');
-            void btnPlus.offsetWidth; // Reflow para reiniciar la animación
+            void btnPlus.offsetWidth;
             btnPlus.classList.add('is-pulsing');
             setTimeout(() => btnPlus.classList.remove('is-pulsing'), CAROUSEL_CONFIG.pulseDuration);
           }
@@ -602,136 +624,41 @@ document.addEventListener('DOMContentLoaded', () => {
       updateActiveState(smooth);
     };
 
-    const nextSlide = () => moveTo(currentIndex + 1, true);
-    const prevSlide = () => moveTo(currentIndex - 1, true);
-
     // Ajuste silencioso del bucle infinito al terminar la transición
     popularTrack.addEventListener('transitionend', (e) => {
       if (e.target !== popularTrack) return;
       isTransitioning = false;
 
-      // Si sobrepasamos las tarjetas originales hacia adelante
       if (currentIndex >= baseOffset + originalCount) {
         moveTo(currentIndex - originalCount, false);
-      }
-      // Si sobrepasamos hacia atrás
-      else if (currentIndex < baseOffset) {
+      } else if (currentIndex < baseOffset) {
         moveTo(currentIndex + originalCount, false);
       }
     });
 
-    // Control de Autoplay
-    const startAutoplay = () => {
-      if (prefersReducedMotion || autoplayTimer) return;
-      if (isHovered || isFocused || isDragging || !isSectionVisible || document.hidden) return;
-
-      autoplayTimer = setInterval(() => {
-        nextSlide();
-      }, CAROUSEL_CONFIG.autoplayInterval);
-    };
-
-    const stopAutoplay = () => {
-      if (autoplayTimer) {
-        clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
-    };
-
-    const resetAutoplay = () => {
-      stopAutoplay();
-      startAutoplay();
-    };
-
-    // Flechas de navegación ‹ ›
-    popularNext.addEventListener('click', () => {
-      nextSlide();
-      resetAutoplay();
-    });
-
-    popularPrev.addEventListener('click', () => {
-      prevSlide();
-      resetAutoplay();
-    });
-
-    // Pausa por hover
-    popularViewport.addEventListener('mouseenter', () => {
-      isHovered = true;
-      stopAutoplay();
-    });
-
-    popularViewport.addEventListener('mouseleave', () => {
-      isHovered = false;
-      if (!isDragging && !isFocused && isSectionVisible) startAutoplay();
-    });
-
-    // Pausa por foco de teclado
-    popularViewport.addEventListener('focusin', () => {
-      isFocused = true;
-      stopAutoplay();
-    });
-
-    popularViewport.addEventListener('focusout', () => {
-      isFocused = false;
-      if (!isHovered && !isDragging && isSectionVisible) startAutoplay();
-    });
-
-    // Pausa por visibilidad de pestaña (Page Visibility API)
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopAutoplay();
-      } else {
-        if (!isHovered && !isFocused && !isDragging && isSectionVisible) startAutoplay();
-      }
-    });
-
-    // Pausa cuando la sección está fuera de pantalla (IntersectionObserver)
-    if (popularSection) {
-      const sectionObserver = new IntersectionObserver((entries) => {
-        isSectionVisible = entries[0].isIntersecting;
-        if (isSectionVisible) {
-          startAutoplay();
-        } else {
-          stopAutoplay();
-        }
-      }, { threshold: 0.15 });
-      sectionObserver.observe(popularSection);
-    }
-
-    // Arrastre con mouse en desktop y swipe táctil fluido con Axis Locking en teléfono
-    let startX = 0;
-    let currentDeltaX = 0;
-    let lastMoveX = 0;
-    let lastMoveTime = 0;
-    let dragVelocity = 0;
-
-    // --- Control Desktop (Mouse) ---
-    const onMouseDown = (e) => {
-      if (isTransitioning) return;
-      isDragging = true;
-      startX = e.clientX;
-      lastMoveX = startX;
-      lastMoveTime = performance.now();
-      currentDeltaX = 0;
-      dragVelocity = 0;
-
-      stopAutoplay();
-      popularTrack.classList.add('no-transition');
-      popularViewport.classList.add('is-dragging');
-    };
+    // --- Control Desktop (Arrastre con mouse) ---
+    let mouseStartX = 0;
+    let mouseDeltaX = 0;
+    let mouseLastX = 0;
+    let mouseLastTime = 0;
+    let mouseVelocity = 0;
 
     const onMouseMove = (e) => {
       if (!isDragging) return;
-      currentDeltaX = e.clientX - startX;
-
-      const now = performance.now();
-      const dt = now - lastMoveTime;
-      if (dt > 10) {
-        dragVelocity = (e.clientX - lastMoveX) / dt;
-        lastMoveX = e.clientX;
-        lastMoveTime = now;
+      mouseDeltaX = e.clientX - mouseStartX;
+      if (Math.abs(mouseDeltaX) > 6) {
+        window._isPopularDragging = true;
       }
 
-      const currentTransform = -currentIndex * step + currentDeltaX;
+      const now = performance.now();
+      const dt = now - mouseLastTime;
+      if (dt > 10) {
+        mouseVelocity = (e.clientX - mouseLastX) / dt;
+        mouseLastX = e.clientX;
+        mouseLastTime = now;
+      }
+
+      const currentTransform = -currentIndex * step + mouseDeltaX;
       popularTrack.style.transform = `translate3d(${currentTransform.toFixed(2)}px, 0, 0)`;
     };
 
@@ -741,106 +668,11 @@ document.addEventListener('DOMContentLoaded', () => {
       popularViewport.classList.remove('is-dragging');
       popularTrack.classList.remove('no-transition');
 
-      const inertia = dragVelocity * CAROUSEL_CONFIG.inertiaFactor;
-      const totalDisplacement = currentDeltaX + inertia;
-      const threshold = cardWidth * CAROUSEL_CONFIG.dragThreshold;
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
 
-      if (Math.abs(totalDisplacement) > threshold) {
-        if (totalDisplacement < 0) {
-          moveTo(currentIndex + 1, true);
-        } else {
-          moveTo(currentIndex - 1, true);
-        }
-      } else {
-        moveTo(currentIndex, true);
-      }
-
-      resetAutoplay();
-    };
-
-    popularViewport.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
-
-    // --- Control Táctil Inteligente en Teléfono (Axis Locking: Scroll vs Swipe) ---
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let isTouchDetermined = false;
-    let isHorizontalSwipe = false;
-
-    popularViewport.addEventListener('touchstart', (e) => {
-      if (isTransitioning || !e.touches || e.touches.length === 0) return;
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      lastMoveX = touchStartX;
-      lastMoveTime = performance.now();
-      currentDeltaX = 0;
-      dragVelocity = 0;
-      isTouchDetermined = false;
-      isHorizontalSwipe = false;
-      stopAutoplay();
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!e.touches || e.touches.length === 0) return;
-      const curX = e.touches[0].clientX;
-      const curY = e.touches[0].clientY;
-      const diffX = curX - touchStartX;
-      const diffY = curY - touchStartY;
-
-      // Determinar eje de movimiento si no está decidido y supera un micro-umbral
-      if (!isTouchDetermined) {
-        if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
-          isTouchDetermined = true;
-          if (Math.abs(diffX) >= Math.abs(diffY)) {
-            // Desplazamiento horizontal: tomar control del carrusel
-            isHorizontalSwipe = true;
-            window._isPopularDragging = true;
-            popularTrack.classList.add('no-transition');
-            popularViewport.classList.add('is-dragging');
-          } else {
-            // Desplazamiento vertical: permitir scroll nativo sin mover el carrusel
-            isHorizontalSwipe = false;
-            return;
-          }
-        } else {
-          return;
-        }
-      }
-
-      if (!isHorizontalSwipe) return;
-
-      if (e.cancelable) {
-        e.preventDefault(); // Prevenir interferencia de scroll vertical mientras se desliza horizontalmente
-      }
-
-      currentDeltaX = diffX;
-      const now = performance.now();
-      const dt = now - lastMoveTime;
-      if (dt > 10) {
-        dragVelocity = (curX - lastMoveX) / dt;
-        lastMoveX = curX;
-        lastMoveTime = now;
-      }
-
-      const currentTransform = -currentIndex * step + currentDeltaX;
-      popularTrack.style.transform = `translate3d(${currentTransform.toFixed(2)}px, 0, 0)`;
-    }, { passive: false });
-
-    const onTouchEnd = () => {
-      if (!isHorizontalSwipe) {
-        isTouchDetermined = false;
-        resetAutoplay();
-        return;
-      }
-
-      isHorizontalSwipe = false;
-      isTouchDetermined = false;
-      popularViewport.classList.remove('is-dragging');
-      popularTrack.classList.remove('no-transition');
-
-      const inertia = dragVelocity * CAROUSEL_CONFIG.inertiaFactor;
-      const totalDisplacement = currentDeltaX + inertia;
+      const inertia = mouseVelocity * CAROUSEL_CONFIG.inertiaFactor;
+      const totalDisplacement = mouseDeltaX + inertia;
       const threshold = cardWidth * CAROUSEL_CONFIG.dragThreshold;
 
       if (Math.abs(totalDisplacement) > threshold) {
@@ -856,21 +688,142 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         window._isPopularDragging = false;
       }, 100);
-
-      resetAutoplay();
     };
 
-    window.addEventListener('touchend', onTouchEnd);
-    window.addEventListener('touchcancel', onTouchEnd);
+    const onMouseDown = (e) => {
+      if (isTransitioning || e.button !== 0) return;
+      isDragging = true;
+      mouseStartX = e.clientX;
+      mouseLastX = mouseStartX;
+      mouseLastTime = performance.now();
+      mouseDeltaX = 0;
+      mouseVelocity = 0;
 
-    // Inicialización y Resize
+      popularTrack.classList.add('no-transition');
+      popularViewport.classList.add('is-dragging');
+
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+    };
+
+    popularViewport.addEventListener('mousedown', onMouseDown);
+
+    // --- Control Táctil en Móvil (Axis Locking: Scroll vertical nativo libre, swipe horizontal suave) ---
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchDeltaX = 0;
+    let touchLastX = 0;
+    let touchLastTime = 0;
+    let touchVelocity = 0;
+    let touchDirection = null; // 'horizontal' | 'vertical' | null
+
+    const onTouchMove = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const curX = e.touches[0].clientX;
+      const curY = e.touches[0].clientY;
+      const diffX = curX - touchStartX;
+      const diffY = curY - touchStartY;
+
+      if (!touchDirection) {
+        const absX = Math.abs(diffX);
+        const absY = Math.abs(diffY);
+        if (absX > 8 || absY > 8) {
+          if (absX >= absY) {
+            touchDirection = 'horizontal';
+            window._isPopularDragging = true;
+            popularTrack.classList.add('no-transition');
+            popularViewport.classList.add('is-dragging');
+          } else {
+            // El usuario desea desplazarse verticalmente por la página: desconectar inmediatamente
+            touchDirection = 'vertical';
+            cleanupTouchListeners();
+            return;
+          }
+        } else {
+          return;
+        }
+      }
+
+      if (touchDirection !== 'horizontal') return;
+
+      if (e.cancelable) {
+        e.preventDefault(); // Prevenir scroll vertical únicamente mientras se realiza el swipe horizontal en el carrusel
+      }
+
+      touchDeltaX = diffX;
+      const now = performance.now();
+      const dt = now - touchLastTime;
+      if (dt > 10) {
+        touchVelocity = (curX - touchLastX) / dt;
+        touchLastX = curX;
+        touchLastTime = now;
+      }
+
+      const currentTransform = -currentIndex * step + touchDeltaX;
+      popularTrack.style.transform = `translate3d(${currentTransform.toFixed(2)}px, 0, 0)`;
+    };
+
+    const cleanupTouchListeners = () => {
+      popularViewport.removeEventListener('touchmove', onTouchMove);
+      popularViewport.removeEventListener('touchend', onTouchEnd);
+      popularViewport.removeEventListener('touchcancel', onTouchEnd);
+    };
+
+    const onTouchEnd = () => {
+      cleanupTouchListeners();
+
+      if (touchDirection === 'horizontal') {
+        popularViewport.classList.remove('is-dragging');
+        popularTrack.classList.remove('no-transition');
+
+        const inertia = touchVelocity * CAROUSEL_CONFIG.inertiaFactor;
+        const totalDisplacement = touchDeltaX + inertia;
+        const threshold = cardWidth * CAROUSEL_CONFIG.dragThreshold;
+
+        if (Math.abs(totalDisplacement) > threshold) {
+          if (totalDisplacement < 0) {
+            moveTo(currentIndex + 1, true);
+          } else {
+            moveTo(currentIndex - 1, true);
+          }
+        } else {
+          moveTo(currentIndex, true);
+        }
+
+        setTimeout(() => {
+          window._isPopularDragging = false;
+        }, 120);
+      }
+
+      touchDirection = null;
+    };
+
+    popularViewport.addEventListener('touchstart', (e) => {
+      if (isTransitioning || !e.touches || e.touches.length === 0) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchLastX = touchStartX;
+      touchLastTime = performance.now();
+      touchDeltaX = 0;
+      touchVelocity = 0;
+      touchDirection = null;
+
+      // Vincular listeners solo mientras dure el toque actual iniciado dentro de popularViewport
+      popularViewport.addEventListener('touchmove', onTouchMove, { passive: false });
+      popularViewport.addEventListener('touchend', onTouchEnd, { passive: true });
+      popularViewport.addEventListener('touchcancel', onTouchEnd, { passive: true });
+    }, { passive: true });
+
+    // Inicialización y Resize controlado (evita reinicios por cambios de barra de URL en móvil)
+    let lastWindowWidth = window.innerWidth;
     window.addEventListener('resize', () => {
+      if (window.innerWidth === lastWindowWidth) return;
+      lastWindowWidth = window.innerWidth;
       clearTimeout(window._carouselResizeTimer);
       window._carouselResizeTimer = setTimeout(updateDimensions, 100);
-    });
+    }, { passive: true });
 
     updateDimensions();
-    startAutoplay();
   }
 
   /* ------------------------------------------------------------------------
